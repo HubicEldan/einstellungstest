@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #efefef;
+}
+
+.row {
+    --bs-gutter-x: 0;
+}
+
+
+:root {
+    --font-primary: Roboto, "Helvetica Neue", sans-serif;
+    --font-secondary: "Noto Serif SC", serif;
+    --font-tertiary: "Noto Serif JP", serif;
+    --font-quaternary: "Roboto", sans-serif;
+    --color-border: #ccc;
+    // --color-secondary: #364e83;
+    // --color-background-red: #b02b2a;
+    // --color-text-white: #ffffff;
+    --font-jumbo: 48px;
+    --font-xxxl: 38px;
+    --font-xxl: 28px;
+    --font-xl: 26px;
+    --font-larger: 22px;
+    --font-large: 18px;
+    --font-regular: 16px;
+    --font-small: 14px;
+    --font-smaller: 12px;
+    --padding-standard: 7rem;
+}

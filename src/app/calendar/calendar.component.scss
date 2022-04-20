@@ -1,0 +1,42 @@
+.calendar-page {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 5rem;
+
+    &__main-container {
+        background-color: #fff;
+    }
+
+    &__dropdowns {
+        background-color: #efefef;
+    }
+
+    &__left-section {
+        border: 1px solid var(--color-border);
+    }
+
+    &__next-viewing {
+        border: 1px solid var(--color-border);
+    }
+
+    &__main-calendar-page {
+        border-right: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+
+}
+
+::ng-deep .p-dropdown {
+    width: 22rem;
+}
+
+::ng-deep .p-calendar .p-datepicker {
+    width: 27.5rem;
+}
+
+
+::ng-deep .p-datepicker table td {
+    padding: 0.2rem;
+}

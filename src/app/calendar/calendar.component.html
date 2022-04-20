@@ -1,0 +1,48 @@
+<div class="calendar-page">
+  <div class="container calendar-page__main-container p-0">
+    <div class="row calendar-page__dropdowns">
+      <div class="col-lg-4 p-4">
+        <p-dropdown
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          placeholder="All properties"
+          optionLabel="name"
+          [showClear]="true"
+        ></p-dropdown>
+      </div>
+      <div class="col-lg-4 p-4">
+        <p-dropdown
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          placeholder="All agents"
+          optionLabel="name"
+          [showClear]="true"
+        ></p-dropdown>
+      </div>
+      <div class="col-lg-4 p-4"></div>
+    </div>
+    <div class="row">
+      <div class="calendar-page__left-section col-lg-4">
+        <div class="row">
+          <p-calendar
+            class="p-0"
+            [(ngModel)]="date14"
+            [inline]="true"
+            [showWeek]="true"
+          ></p-calendar>
+        </div>
+        <div class="row calendar-page__next-viewing">
+          <div class="p-3">
+            <app-next-viewing></app-next-viewing>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 calendar-page__main-calendar-page">
+        <app-main-calendar></app-main-calendar>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

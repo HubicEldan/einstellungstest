@@ -1,0 +1,49 @@
+<div class="main-calendar-page">
+  <div class="row  main-calendar-page__date-range-section">
+    <div class="col-6">
+      <strong>October 6-12</strong>
+    </div>
+    <div class="col-6 text-end">></div>
+  </div>
+  <div class="row main-calendar-page__week-range-section">
+    <div class="col-1">
+
+    </div>
+    <div class="col text-center" *ngFor="let days of array1">
+      {{days}}
+    </div>
+  </div>
+
+
+<div class="main-calendar-page__month-range-section overflow-auto">
+  <div class="row border-top " *ngFor="let hours of array">
+    <div class="col-1 border-end main-calendar-page__hours">
+      {{hours}}
+    </div>
+    <div class="col text-center border-end" *ngFor="let days of array1">
+      {{days}}
+    </div>
+  </div>
+</div>
+ 
+  <!-- <div class="row m-0 main-calendar-page__month-range-section">
+        <div class="row border-bottom" *ngFor="let hours of array">
+          <div class="col-1 border-end pb-5">{{hours}}</div>
+          <div class="col border-end" *ngFor="let days of array1">
+            {{days}}
+          </div>
+         
+        </div>
+      
+     
+    
+    
+  </div> -->
+</div>
+ <!-- <div class="col-lg-11">
+        <div class="row p-3 border-bottom" *ngFor="let hours of array">
+          <div class="col" *ngFor="let columns of array1">
+            {{columns}}
+          </div>
+        </div>
+      </div> -->
