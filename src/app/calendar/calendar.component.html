@@ -25,8 +25,10 @@
       <div class="calendar-page__left-section col-lg-4">
         <div class="row">
           <p-calendar
+            (onMonthChange)="onMonthChange()"
+            (click)="onDayChange()"
             class="p-0"
-            [(ngModel)]="date14"
+            [(ngModel)]="selectedDate"
             [inline]="true"
             [showWeek]="true"
           ></p-calendar>
@@ -38,11 +40,15 @@
         </div>
       </div>
       <div class="col-lg-8 calendar-page__main-calendar-page">
-        <app-main-calendar></app-main-calendar>
+        <app-main-calendar
+          [selectedDate]="selectedDate"
+          (nextButtonClickEvent)="next($event)"
+          (perviousButtonClickEvent)="previous($event)"
+          
+          
+          [lastDay]="lastDay"
+        ></app-main-calendar>
       </div>
     </div>
   </div>
 </div>
-
-
-

@@ -4,7 +4,7 @@
     &__date-range-section {
         border-top: 1px solid var(--color-border);
         border-bottom: 1px solid var(--color-border);
-        padding: 1.5rem;
+        padding: 1.35rem;
     }
 
     &__week-range-section {
@@ -12,6 +12,7 @@
         padding-right: 1.2rem;
         padding-top: 1rem;
         padding-bottom: 1rem;
+        color: #858585;
     }
 
 
@@ -21,6 +22,13 @@
 
     &__hours {
         padding-bottom: 6rem;
+        padding-left: 0.5rem;
+        padding-top: 0.2rem;
+        font-weight: 500;
+    }
+
+    &__chevrons {
+        cursor: pointer;
     }
 
 }

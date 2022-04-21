@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -13,16 +13,20 @@ import { CalendarComponent } from './calendar/calendar.component';
 
 //primeng
 import { DropdownModule } from 'primeng/dropdown';
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
 import { NextViewingComponent } from './calendar/next-viewing/next-viewing.component';
 import { MainCalendarComponent } from './calendar/main-calendar/main-calendar.component';
+import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
     NextViewingComponent,
-    MainCalendarComponent
+    MainCalendarComponent,
+    ChangeToMonthNamePipe,
+
   ],
   imports: [
     BrowserAnimationsModule,
