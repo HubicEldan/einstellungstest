@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { addDays, getMonth, getWeek, getYear, lastDayOfWeek, subDays } from 'date-fns';
+import { addDays, addMonths, getMonth, getWeek, getYear, lastDayOfWeek, subDays } from 'date-fns';
 import { DataService } from '../shared/services/data.service';
 
 @Component({
@@ -9,26 +9,17 @@ import { DataService } from '../shared/services/data.service';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
-  appointments: any;
+  constructor() { }
   cities: any[] = [];
 
   //selected
   selectedDate: Date = new Date();
-  selectedDay!: number;
 
-
-  lastDay!: Date;
 
   selectedCity: any;
 
   ngOnInit(): void {
-    //  this.selectedDate = new Date(); 
-    // this.selectedMonth = getMonth(this.selectedDate) + 1;
-    // this.selectedYear = getYear(this.selectedDate);
-    //  this.selectedDay = getDay(this.selectedDate);
-
-
+    
 
     this.cities = [
       { name: 'New York', code: 'NY' },
@@ -39,42 +30,25 @@ export class CalendarComponent implements OnInit {
     ];
 
 
-    this.dataService.getJsonData().subscribe({
-      next: (response) => {
-        console.log(response.data.appointments);
-        this.appointments = response.data.appointments;
-      },
-      error: () => {
-        console.log('Something went wrong!');
-      },
-      complete: () => {
-        console.log('Retrieved data successfully');
-      }
-    });
+   
+    
   }
 
   onMonthChange() {
-
-  }
-
-  onDayChange() {
-    this.lastDay = addDays(this.selectedDate, 6);
+    this.selectedDate = addMonths(this.selectedDate, 1);
   }
 
 
-  next(isClicked: boolean) {
-    if (isClicked) {
+  next(isNextClicked: boolean) {
+    if (isNextClicked) {
       this.selectedDate = addDays(this.selectedDate, 6);
-      this.lastDay = addDays(this.selectedDate, 6);
+
     }
   }
 
-  previous(isClicked: boolean) {
-    if(isClicked) {
+  previous(isPreviousClicked: boolean) {
+    if (isPreviousClicked) {
       this.selectedDate = subDays(this.selectedDate, 6);
-      this.lastDay = subDays(this.selectedDate, 6);
-     
-      
     }
   }
 

@@ -2,7 +2,7 @@
   <div class="row main-calendar-page__date-range-section">
     <div class="col-6">
       <strong class="fs-5"
-        >{{ selectedDate | date: "d" }} - {{ lastDay | date : 'd' }}
+        >{{ selectedDate | date: "d" }} - {{ weekDays[6] | date: "d" }}
         {{ selectedDate | date: "MMMM" }}
         {{ selectedDate | date: "y" }}
       </strong>
@@ -26,8 +26,8 @@
       </div>
       <div
         class="col text-center border-end"
-        *ngFor="let days of getWeekRange()"
-      ></div>
+        *ngFor="let days of formatedWeekDays"
+      >{{days}}</div>
     </div>
   </div>
 </div>
