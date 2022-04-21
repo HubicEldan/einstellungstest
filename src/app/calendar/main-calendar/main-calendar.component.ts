@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { addDays, addWeeks, eachDayOfInterval, format, getMonth, getYear } from 'date-fns';
+import { INode } from 'src/app/shared/models/INode';
 import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
@@ -13,26 +14,27 @@ export class MainCalendarComponent implements OnInit {
   @Input() selectedDate!: Date;
   weekDays!: Date[];
   formatedWeekDays: string[] = [];
-  nodes: any[] = [];
+  nodes: INode[] = [];
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getJsonData().subscribe({
       next: (response) => {
-        response.data.appointments.nodes.forEach((element: any) => {
-          this.nodes.push(element);
-        })
+        this.nodes = response.data.appointments.nodes.map((element: any) => {
+          console.log(element.date);
+
+
+        });
       },
       error: () => {
         console.log('Something went wrong!');
       },
       complete: () => {
         console.log('Data recieved successfully');
-        console.log(this.nodes);
       }
     });
 
-    console.log(this.nodes[0]);
+
 
     this.selectedDate = new Date();
     this.getWeekRange();
@@ -53,7 +55,7 @@ export class MainCalendarComponent implements OnInit {
     })
 
     let newArr = this.weekDays.map(date => {
-      return format(date, 'dd/MM/yyyy');
+      return format(date, 'yyyy-MM-dd');
     });
 
     this.formatedWeekDays = newArr;
