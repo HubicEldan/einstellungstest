@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 //components
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
-
+import { AppointmentModalComponent } from './calendar/appointment-modal/appointment-modal.component';
 
 //primeng
 import { DropdownModule } from 'primeng/dropdown';
@@ -19,6 +19,11 @@ import { MainCalendarComponent } from './calendar/main-calendar/main-calendar.co
 import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
 
 
+
+
+//material 
+import {MatDialogModule} from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +31,7 @@ import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe'
     NextViewingComponent,
     MainCalendarComponent,
     ChangeToMonthNamePipe,
+    AppointmentModalComponent,
 
   ],
   imports: [
@@ -36,7 +42,8 @@ import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe'
     FormsModule,
     CommonModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

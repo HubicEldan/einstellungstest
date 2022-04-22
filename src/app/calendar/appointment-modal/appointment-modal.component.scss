@@ -1,0 +1,12 @@
+.modal-page {
+    &__main-content {
+        background-color: var(--color-body);
+
+    }
+
+    &__land-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

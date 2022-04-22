@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: #efefef;
+    background-color: var(--color-body);
 }
 
 .row {
     --bs-gutter-x: 0;
+}
+
+.mat-dialog-container {
+    padding: 0 !important; 
 }
 
 
@@ -14,6 +18,7 @@ body {
     --font-tertiary: "Noto Serif JP", serif;
     --font-quaternary: "Roboto", sans-serif;
     --color-border: #ccc;
+    --color-body: #efefef;
     // --color-secondary: #364e83;
     // --color-background-red: #b02b2a;
     // --color-text-white: #ffffff;
@@ -28,3 +33,5 @@ body {
     --font-smaller: 12px;
     --padding-standard: 7rem;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

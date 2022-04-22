@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { addDays, addWeeks, eachDayOfInterval, format, formatISO, getMonth, getYear } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 import { DataService } from 'src/app/shared/services/data.service';
+import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
 
 @Component({
   selector: 'app-main-calendar',
@@ -12,21 +14,19 @@ export class MainCalendarComponent implements OnInit {
   @Output() nextButtonClickEvent = new EventEmitter<boolean>();
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
-  isAppointment!: boolean;
 
-
-  
   weekDays!: Date[];
   formatedWeekDays: string[] = [];
   nodes: INode[] = [];
-
-
+  appointmentsForDay: INode[] = [];
   appointments: any[] = [];
   appointment = {
     date: '',
     hours: ''
   }
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private dialog: MatDialog) { }
+
+
 
   ngOnInit(): void {
     this.dataService.getJsonData().subscribe({
@@ -37,11 +37,15 @@ export class MainCalendarComponent implements OnInit {
             date: format(new Date(element.date), 'dd.MM.yyyy'),
             hours: format(new Date(element.date), 'H:mm')
           }
-          this.appointments.push(this.appointment)
+          this.appointments.push(this.appointment);
         })
-        console.log(this.appointments);
-        console.log(this.nodes);
-        
+        this.formatedWeekDays.forEach(element => {
+          this.nodes.forEach(node => {
+            if (format(new Date(node.date), 'dd.MM.yyyy') === element) {
+              this.appointmentsForDay.push(node);
+            }
+          })
+        })
       },
       error: () => {
         console.error('Something went wrong!');
@@ -50,10 +54,10 @@ export class MainCalendarComponent implements OnInit {
         console.log('Data recieved successfully');
       }
     });
- 
+
     this.selectedDate = new Date();
     this.getWeekRange();
-  
+
   }
 
   getTimeRange(from: number, until: number): string[] {
@@ -61,6 +65,7 @@ export class MainCalendarComponent implements OnInit {
     for (let i = from; i <= until; i++) {
       hoursArray.push(i + ':00');
     }
+
     return hoursArray;
   }
 
@@ -69,14 +74,10 @@ export class MainCalendarComponent implements OnInit {
       start: this.selectedDate,
       end: addDays(this.selectedDate, 6)
     })
-
     let newArr = this.weekDays.map(date => {
       return format(date, 'dd.MM.yyyy');
     });
-
     this.formatedWeekDays = newArr;
-    
-    
     return this.weekDays;
   }
 
@@ -89,12 +90,20 @@ export class MainCalendarComponent implements OnInit {
     this.perviousButtonClickEvent.emit(value);
   }
 
-  
+  openDialog(node: INode, nextNode: INode): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = "700px";
+    dialogConfig.width = "800px";
+    dialogConfig.data = { node: node, nextNode: nextNode, appointmentsForDay: this.appointmentsForDay };
+    this.dialog.open(AppointmentModalComponent, dialogConfig);
+  }
 
 
 
 
 
- 
+
 
 }

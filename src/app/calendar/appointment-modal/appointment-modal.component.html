@@ -1,0 +1,84 @@
+<div class="modal-page">
+  <div class="row border-bottom m-0 p-3">
+    <div class="col-4">
+      <i class="pi pi-calendar pe-1" style="color: blue"></i
+      >{{ data.node.date | date: "EEEE" }},
+      {{ data.node.date | date: "dd MMMM yyyy" }}
+    </div>
+    <div class="col-4">
+      <i class="pi pi-clock pe-1" style="color: blue"></i>
+      {{ data.node.date | date: "hh:mm" }} - ?
+    </div>
+
+    <div class="col-4 text-end">
+      <i class="pi pi-chevron-left me-2"></i><i class="pi pi-chevron-right"></i>
+    </div>
+  </div>
+  <div
+    class="row modal-page__main-content p-4"
+    *ngFor="let appointment of data.appointmentsForDay; let i = index"
+  >
+    <div class="row border p-3 mb-3" style="background-color: #fff">
+      <div class="row">
+        <div class="col-8 pb-4">
+          <div class="row">
+            <div class="col-2">
+              <img src="" height="70px" width="70px" alt="" />
+            </div>
+            <div class="col-10 modal-page__land-info">
+              <div>{{ appointment.property.name }}</div>
+              <div style="color: #ccc">
+                {{
+                  appointment.property.address.street +
+                    " " +
+                    appointment.property.address.houseNumber +
+                    ", " +
+                    appointment.property.address.zipCode +
+                    " " +
+                    appointment.property.address.city +
+                    ", " +
+                    appointment.property.address.country
+                }},
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row">
+            <div class="col-4">
+              <img src="" height="70px" width="70px" alt="" />
+            </div>
+            <div class="col-8 modal-page__land-info">
+              <div>
+                {{
+                  appointment.property.user.profile.firstname +
+                    " " +
+                    appointment.property.user.profile.name
+                }}
+              </div>
+              <div>
+                {{ appointment.property.user.profile.title }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 border p-3 mb-3"  *ngFor="let appointment of data.appointmentsForDay; let i = index">
+            <div class="row">
+                <div class="col">
+
+                </div>
+                <div class="col">
+
+                </div>
+                <div class="col text-end">
+                    <i class="pi pi-ellipsis-v" style="font-size: 1.5rem"></i>
+                </div>
+            </div>
+        </div>
+        <div style="cursor: pointer" class="col-12 border p-3 text-center">
+          <i class="pi pi-plus-circle"></i> Create viewing
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
