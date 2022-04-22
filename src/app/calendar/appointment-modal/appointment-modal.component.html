@@ -62,18 +62,29 @@
             </div>
           </div>
         </div>
-        <div class="col-12 border p-3 mb-3"  *ngFor="let appointment of data.appointmentsForDay; let i = index">
-            <div class="row">
-                <div class="col">
-
-                </div>
-                <div class="col">
-
-                </div>
-                <div class="col text-end">
-                    <i class="pi pi-ellipsis-v" style="font-size: 1.5rem"></i>
-                </div>
+        <div
+          class="col-12 border p-3 mb-3"
+          *ngFor="let appointment of nextAppointments; let i = index"
+        >
+          <div class="row">
+            <div class="col">
+              <i class="pi pi-calendar pe-1" style="color: blue"></i>
+              {{ appointment.date | date: "dd MMMM yyyy" }}
             </div>
+            <div class="col">
+              <i class="pi pi-clock pe-1" style="color: blue"></i>
+              {{ appointment.date | date: "hh:mm" }}
+            </div>
+            <div class="col">
+              <i class="pi pi-user pe-1" style="color: blue"></i>
+              {{
+                appointment.attendeeCount + "|" + appointment.maxInviteeCount
+              }}
+            </div>
+            <div class="col text-end">
+              <i class="pi pi-ellipsis-v" style="font-size: 1.5rem"></i>
+            </div>
+          </div>
         </div>
         <div style="cursor: pointer" class="col-12 border p-3 text-center">
           <i class="pi pi-plus-circle"></i> Create viewing

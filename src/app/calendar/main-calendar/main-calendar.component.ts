@@ -29,6 +29,8 @@ export class MainCalendarComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.selectedDate = new Date();
+    this.getWeekRange();
     this.dataService.getJsonData().subscribe({
       next: (response) => {
         this.nodes = response.data.appointments.nodes;
@@ -39,10 +41,15 @@ export class MainCalendarComponent implements OnInit {
           }
           this.appointments.push(this.appointment);
         })
+
+
+        //ISPRAVITI, POTREBNO DA ISPIŠE APPOINTMENTSE ZA ODREĐENI DAN
         this.formatedWeekDays.forEach(element => {
           this.nodes.forEach(node => {
             if (format(new Date(node.date), 'dd.MM.yyyy') === element) {
               this.appointmentsForDay.push(node);
+              console.log(this.appointmentsForDay);
+              
             }
           })
         })
@@ -55,8 +62,7 @@ export class MainCalendarComponent implements OnInit {
       }
     });
 
-    this.selectedDate = new Date();
-    this.getWeekRange();
+  
 
   }
 
