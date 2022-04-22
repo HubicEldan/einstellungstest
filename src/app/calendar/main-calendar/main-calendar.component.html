@@ -15,7 +15,7 @@
   <div class="row main-calendar-page__week-range-section">
     <div class="col-1"></div>
     <div class="col text-center" *ngFor="let days of getWeekRange()">
-      {{ days | date: "d EE" }}
+     {{ days | date: "d EE" }}
     </div>
   </div>
 
@@ -27,7 +27,18 @@
       <div
         class="col text-center border-end"
         *ngFor="let days of formatedWeekDays"
-      >{{days}}</div>
+      >
+        <div *ngFor="let appointment of appointments; index as i">
+          <div
+            (mouseover)="isAppointment = true"
+            (mouseout)="isAppointment = false"
+            class="main-calendar-page__appointment"
+            *ngIf="appointment.hours === hours && appointment.date === days"
+          >
+            1
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

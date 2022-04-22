@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { addDays, addWeeks, eachDayOfInterval, format, getMonth, getYear } from 'date-fns';
+import { addDays, addWeeks, eachDayOfInterval, format, formatISO, getMonth, getYear } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 import { DataService } from 'src/app/shared/services/data.service';
 
@@ -12,32 +12,48 @@ export class MainCalendarComponent implements OnInit {
   @Output() nextButtonClickEvent = new EventEmitter<boolean>();
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
+  isAppointment!: boolean;
+
+
+  
   weekDays!: Date[];
   formatedWeekDays: string[] = [];
   nodes: INode[] = [];
+
+
+  appointments: any[] = [];
+  appointment = {
+    date: '',
+    hours: ''
+  }
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getJsonData().subscribe({
       next: (response) => {
-        this.nodes = response.data.appointments.nodes.map((element: any) => {
-          console.log(element.date);
-
-
-        });
+        this.nodes = response.data.appointments.nodes;
+        this.nodes.forEach(element => {
+          this.appointment = {
+            date: format(new Date(element.date), 'dd.MM.yyyy'),
+            hours: format(new Date(element.date), 'H:mm')
+          }
+          this.appointments.push(this.appointment)
+        })
+        console.log(this.appointments);
+        console.log(this.nodes);
+        
       },
       error: () => {
-        console.log('Something went wrong!');
+        console.error('Something went wrong!');
       },
       complete: () => {
         console.log('Data recieved successfully');
       }
     });
-
-
-
+ 
     this.selectedDate = new Date();
     this.getWeekRange();
+  
   }
 
   getTimeRange(from: number, until: number): string[] {
@@ -55,11 +71,12 @@ export class MainCalendarComponent implements OnInit {
     })
 
     let newArr = this.weekDays.map(date => {
-      return format(date, 'yyyy-MM-dd');
+      return format(date, 'dd.MM.yyyy');
     });
 
     this.formatedWeekDays = newArr;
-
+    
+    
     return this.weekDays;
   }
 
@@ -72,6 +89,12 @@ export class MainCalendarComponent implements OnInit {
     this.perviousButtonClickEvent.emit(value);
   }
 
+  
 
+
+
+
+
+ 
 
 }

@@ -17,7 +17,7 @@
 
 
     &__month-range-section {
-        height: 37rem;
+        height: 37.2rem;
     }
 
     &__hours {
@@ -31,4 +31,21 @@
         cursor: pointer;
     }
 
+    &__appointment {
+        color: #fff;
+        background-color: #1b1b1b;
+        height: 7.7rem;
+        cursor: pointer;
+    }
+    &__appointment:hover {
+       
+            background-color: rgb(44, 44, 238);
+        
+    }
+
+}
+
+
+.active {
+    background-color: red;
 }
