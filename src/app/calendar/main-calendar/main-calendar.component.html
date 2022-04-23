@@ -14,7 +14,11 @@
   </div>
   <div class="row main-calendar-page__week-range-section">
     <div class="col-1"></div>
-    <div class="col text-center" *ngFor="let days of getWeekRange()">
+    <div
+      [ngClass]="color"
+      class="col text-center"
+      *ngFor="let days of getWeekRange()"
+    >
       {{ days | date: "d EE" }}
     </div>
   </div>
@@ -31,9 +35,13 @@
         <div *ngFor="let appointment of appointments; index as i">
           <div
             class="main-calendar-page__appointment"
+            (mouseover)="changeStyle($event)"
+            (mouseout)="changeStyle($event)"
             *ngIf="appointment.hours === hours && appointment.date === days"
-            (click)="openDialog(nodes[i], nodes[i+1])"
-          ></div>
+            (click)="openDialog(nodes[i], nodes[i + 1])"
+          >
+           <div class="pt-1">{{arr[i].length}} VIEWINGS</div>
+          </div>
         </div>
       </div>
     </div>

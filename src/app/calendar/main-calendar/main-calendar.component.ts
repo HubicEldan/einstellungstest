@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { addDays, addWeeks, eachDayOfInterval, format, formatISO, getMonth, getYear } from 'date-fns';
+import { addDays, eachDayOfInterval, format } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 import { DataService } from 'src/app/shared/services/data.service';
 import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
@@ -10,7 +10,7 @@ import { AppointmentModalComponent } from '../appointment-modal/appointment-moda
   templateUrl: './main-calendar.component.html',
   styleUrls: ['./main-calendar.component.scss']
 })
-export class MainCalendarComponent implements OnInit {
+export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() nextButtonClickEvent = new EventEmitter<boolean>();
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
@@ -20,10 +20,12 @@ export class MainCalendarComponent implements OnInit {
   nodes: INode[] = [];
   appointmentsForDay: INode[] = [];
   appointments: any[] = [];
+  arr: any[] = []
   appointment = {
     date: '',
     hours: ''
   }
+  color: string = 'red';
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
 
@@ -34,6 +36,9 @@ export class MainCalendarComponent implements OnInit {
     this.dataService.getJsonData().subscribe({
       next: (response) => {
         this.nodes = response.data.appointments.nodes;
+        this.nodes = this.nodes.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        console.log(this.nodes);
+
         this.nodes.forEach(element => {
           this.appointment = {
             date: format(new Date(element.date), 'dd.MM.yyyy'),
@@ -41,18 +46,14 @@ export class MainCalendarComponent implements OnInit {
           }
           this.appointments.push(this.appointment);
         })
+        this.getAppointmentsForToday();
 
+        for (let i = 0; i < this.nodes.length; i++) {
+          this.arr.push(this.nodes.slice(i));
+          console.log(this.arr);
+          
+        }
 
-        //ISPRAVITI, POTREBNO DA ISPIŠE APPOINTMENTSE ZA ODREĐENI DAN
-        this.formatedWeekDays.forEach(element => {
-          this.nodes.forEach(node => {
-            if (format(new Date(node.date), 'dd.MM.yyyy') === element) {
-              this.appointmentsForDay.push(node);
-              console.log(this.appointmentsForDay);
-              
-            }
-          })
-        })
       },
       error: () => {
         console.error('Something went wrong!');
@@ -61,9 +62,33 @@ export class MainCalendarComponent implements OnInit {
         console.log('Data recieved successfully');
       }
     });
+  }
 
-  
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes) {
+      this.appointmentsForDay = [];
+      this.getWeekRange();
+      this.getAppointmentsForToday();
+    }
+  }
+
+
+  changeStyle($event: any) {
+    this.color = $event.type == 'mouseover' ? 'selected' : 'notSelected';
+  }
+
+
+  getAppointmentsForToday() {
+    this.formatedWeekDays.forEach(element => {
+
+      this.nodes.forEach(node => {
+        if (format(new Date(node.date), 'dd.MM.yyyy') === element) {
+          this.appointmentsForDay.push(node);
+
+        }
+      })
+    })
   }
 
   getTimeRange(from: number, until: number): string[] {
@@ -80,10 +105,12 @@ export class MainCalendarComponent implements OnInit {
       start: this.selectedDate,
       end: addDays(this.selectedDate, 6)
     })
-    let newArr = this.weekDays.map(date => {
+
+
+    this.formatedWeekDays = this.weekDays.map(date => {
       return format(date, 'dd.MM.yyyy');
     });
-    this.formatedWeekDays = newArr;
+
     return this.weekDays;
   }
 
@@ -104,9 +131,8 @@ export class MainCalendarComponent implements OnInit {
     dialogConfig.width = "800px";
     dialogConfig.data = { node: node, nextNode: nextNode, appointmentsForDay: this.appointmentsForDay };
     this.dialog.open(AppointmentModalComponent, dialogConfig);
+
   }
-
-
 
 
 

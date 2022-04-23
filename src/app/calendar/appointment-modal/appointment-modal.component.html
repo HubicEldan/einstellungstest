@@ -16,7 +16,7 @@
   </div>
   <div
     class="row modal-page__main-content p-4"
-    *ngFor="let appointment of data.appointmentsForDay; let i = index"
+    *ngFor="let appointment of data.appointmentsForDay; index as i"
   >
     <div class="row border p-3 mb-3" style="background-color: #fff">
       <div class="row">
@@ -62,23 +62,24 @@
             </div>
           </div>
         </div>
-        <div
-          class="col-12 border p-3 mb-3"
-          *ngFor="let appointment of nextAppointments; let i = index"
-        >
+
+        <div class="col-12 border p-3 mb-3" *ngFor="let arr of arr[i+1]">
           <div class="row">
             <div class="col">
               <i class="pi pi-calendar pe-1" style="color: blue"></i>
-              {{ appointment.date | date: "dd MMMM yyyy" }}
+              {{ data.appointmentsForDay[i+1]?.date | date: "dd MMMM yyyy" }}
             </div>
+
             <div class="col">
               <i class="pi pi-clock pe-1" style="color: blue"></i>
-              {{ appointment.date | date: "hh:mm" }}
+              {{ data.appointmentsForDay[i+1]?.date | date: "hh:mm" }}
             </div>
             <div class="col">
               <i class="pi pi-user pe-1" style="color: blue"></i>
               {{
-                appointment.attendeeCount + "|" + appointment.maxInviteeCount
+                data.appointmentsForDay[i+1]?.attendeeCount +
+                  "|" +
+                  data.appointmentsForDay[i+1]?.maxInviteeCount
               }}
             </div>
             <div class="col text-end">

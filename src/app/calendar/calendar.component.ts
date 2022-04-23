@@ -35,7 +35,7 @@ export class CalendarComponent implements OnInit {
   }
 
   onMonthChange() {
-    this.selectedDate = addMonths(this.selectedDate, 1);
+    // this.selectedDate = addMonths(this.selectedDate, 1);
   }
 
 
