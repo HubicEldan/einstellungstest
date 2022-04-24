@@ -18,7 +18,7 @@
     class="row modal-page__main-content p-4"
     *ngFor="let appointment of data.sameDayAppointments; index as i"
   >
-    <div class="row border p-3 mb-3" style="background-color: #fff" >
+    <div class="row border p-3 mb-3" style="background-color: #fff" *ngIf="((appointment.date | date: 'HH:mm') === (data.node.date | date: 'HH:mm')) ">
       <div class="row">
         <div class="col-8 pb-4">
           <div class="row">

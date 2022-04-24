@@ -39,9 +39,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
         for (let i = 0; i < this.nodes.length; i++) {
           for (let k = i + 1; k < this.nodes.length; k++) {
-            if ((format(new Date(this.nodes[i].date), 'dd.MM.yyyy') === format(new Date(this.nodes[k].date), 'dd.MM.yyyy'))) {
-              this.sameDayAppointments.push(this.nodes[k])
-            }
             if ((format(new Date(this.nodes[i].date), 'dd.MM.yyyy') === format(new Date(this.nodes[k].date), 'dd.MM.yyyy')) && (format(new Date(this.nodes[i].date), 'HH:mm') === format(new Date(this.nodes[k].date), 'HH:mm'))) {
               this.sameDaySameHourAppointments.push(this.nodes[k])
             }
@@ -149,7 +146,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     dialogConfig.autoFocus = true;
     dialogConfig.height = "700px";
     dialogConfig.width = "800px";
-    dialogConfig.data = { node: node, sameDayAppointments: this.sameDayAppointments };
+    dialogConfig.data = { node: node, sameDayAppointments: this.sameDaySameHourAppointments };
     this.dialog.open(AppointmentModalComponent, dialogConfig);
 
   }
