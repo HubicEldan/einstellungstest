@@ -2,12 +2,12 @@
   <div class="row border-bottom m-0 p-3">
     <div class="col-4">
       <i class="pi pi-calendar pe-1" style="color: blue"></i
-      >{{ data.node.date | date: "EEEE" }},
-      {{ data.node.date | date: "dd MMMM yyyy" }}
+      >{{ data.node?.date | date: "EEEE" }},
+      {{ data.node?.date | date: "dd MMMM yyyy" }}
     </div>
     <div class="col-4">
       <i class="pi pi-clock pe-1" style="color: blue"></i>
-      {{ data.node.date | date: "hh:mm" }} - ?
+      {{ subtractHours(data.node.date,2) | date: "HH:mm" }} - {{subtractHours(addHours(data.node.date, 1),2) | date: "HH:mm" }}
     </div>
 
     <div class="col-4 text-end">
@@ -16,9 +16,9 @@
   </div>
   <div
     class="row modal-page__main-content p-4"
-    *ngFor="let appointment of data.appointmentsForDay; index as i"
+    *ngFor="let appointment of data.sameDayAppointments; index as i"
   >
-    <div class="row border p-3 mb-3" style="background-color: #fff">
+    <div class="row border p-3 mb-3" style="background-color: #fff" >
       <div class="row">
         <div class="col-8 pb-4">
           <div class="row">
@@ -63,23 +63,23 @@
           </div>
         </div>
 
-        <div class="col-12 border p-3 mb-3" *ngFor="let arr of arr[i+1]">
+        <div class="col-12 border p-3 mb-3">
           <div class="row">
             <div class="col">
               <i class="pi pi-calendar pe-1" style="color: blue"></i>
-              {{ data.appointmentsForDay[i+1]?.date | date: "dd MMMM yyyy" }}
+              {{ data.sameDayAppointments[i]?.date | date: "dd MMMM yyyy" }}
             </div>
 
             <div class="col">
               <i class="pi pi-clock pe-1" style="color: blue"></i>
-              {{ data.appointmentsForDay[i+1]?.date | date: "hh:mm" }}
+              {{ data.sameDayAppointments[i]?.date | date: "hh:mm" }}
             </div>
             <div class="col">
               <i class="pi pi-user pe-1" style="color: blue"></i>
               {{
-                data.appointmentsForDay[i+1]?.attendeeCount +
+                data.sameDayAppointments[i]?.attendeeCount +
                   "|" +
-                  data.appointmentsForDay[i+1]?.maxInviteeCount
+                  data.sameDayAppointments[i]?.maxInviteeCount
               }}
             </div>
             <div class="col text-end">

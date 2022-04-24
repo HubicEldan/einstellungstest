@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { addHours } from 'date-fns';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { addHours, subHours } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 
 @Component({
@@ -10,25 +10,23 @@ import { INode } from 'src/app/shared/models/INode';
 })
 export class AppointmentModalComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode, appointmentsForDay: INode[], nextNode: INode }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode, sameDayAppointments: INode[] }) { }
   nextAppointments: INode[] = [];
   hideArrows: boolean = false;
   arr: any[] = [];
   ngOnInit(): void {
     console.log(this.data);
 
-    for (let i = 0; i < this.data.appointmentsForDay.length; i++) {
-      this.arr.push(this.data.appointmentsForDay.slice(i));
-      console.log(this.arr);
+    // for (let i = 0; i < this.data.appointmentsForDay.length; i++) {
+    //   this.arr.push(this.data.appointmentsForDay.slice(i));
+    //   console.log(this.arr);
       
-    }
+    // }
 
 
   }
 
-  addHour(date: string, hours: number): Date {
-    return addHours(new Date(date), hours);
-  }
+  
 
 
   previousApp() {
@@ -41,4 +39,11 @@ export class AppointmentModalComponent implements OnInit {
 
   }
 
+  subtractHours(date: string, numOfHours: number) {
+    return subHours(new Date(date), numOfHours);
+  }
+
+  addHours(date: string, hours: number) {
+    return addHours(new Date(date), hours).toString();
+  }
 }
