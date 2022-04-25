@@ -14,13 +14,14 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() nextButtonClickEvent = new EventEmitter<boolean>();
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
+  @Input() nodes: INode[] = [];
   sameDaySameHourAppointments: INode[] = [];
   sameDayAppointments: INode[] = [];
   hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
-  nodes: INode[] = [];
+  nextViewing: INode[] = [];
   color: string = 'red';
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
@@ -30,42 +31,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     this.hoursAndMinutesRange();
     this.selectedDate = new Date();
     // this.getWeekRange();
-    this.dataService.getJsonData().subscribe({
-      next: (response) => {
-        this.nodes = response.data.appointments.nodes;
-        this.nodes = this.nodes.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        console.log(this.nodes);
-
-
-        for (let i = 0; i < this.nodes.length; i++) {
-          for (let k = i + 1; k < this.nodes.length; k++) {
-            if ((format(new Date(this.nodes[i].date), 'dd.MM.yyyy') === format(new Date(this.nodes[k].date), 'dd.MM.yyyy')) && (format(new Date(this.nodes[i].date), 'HH:mm') === format(new Date(this.nodes[k].date), 'HH:mm'))) {
-              this.sameDaySameHourAppointments.push(this.nodes[k])
-            }
-          }
-        }
-        console.log(this.sameDayAppointments);
-        
-        console.log(this.sameDaySameHourAppointments);
-
-
-
-        // for (let i = 0; i < this.nodes.length; i++) {
-        //   this.arr.push(this.nodes.slice(i));
-        //   console.log(this.arr);
-
-        // }
-
-
-
-      },
-      error: () => {
-        console.error('Something went wrong!');
-      },
-      complete: () => {
-        console.log('Data recieved successfully');
-      }
-    });
+  
   }
 
 
@@ -140,13 +106,17 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     this.perviousButtonClickEvent.emit(value);
   }
 
-  openDialog(node: INode): void {
+ 
+
+
+  openDialog(node: INode, nodes: INode[]): void {
+ 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.height = "700px";
     dialogConfig.width = "800px";
-    dialogConfig.data = { node: node, sameDayAppointments: this.sameDaySameHourAppointments };
+    dialogConfig.data = { node: node, nodes: nodes, date: this.selectedDate };
     this.dialog.open(AppointmentModalComponent, dialogConfig);
 
   }

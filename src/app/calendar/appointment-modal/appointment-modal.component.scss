@@ -1,7 +1,13 @@
 .modal-page {
-    &__main-content {
-        background-color: var(--color-body);
+    height: 100%;
+    background-color: var(--color-body);
 
+    &__next {
+        cursor: pointer;
+    }
+
+    &__previous {
+        cursor: pointer;
     }
 
     &__land-info {
@@ -9,4 +15,6 @@
         flex-direction: column;
         justify-content: center;
     }
+
+
 }

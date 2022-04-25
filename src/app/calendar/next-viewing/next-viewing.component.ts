@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { subHours } from 'date-fns';
+import { INode } from 'src/app/shared/models/INode';
 
 @Component({
   selector: 'app-next-viewing',
@@ -8,8 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class NextViewingComponent implements OnInit {
 
   constructor() { }
-
+  @Input() nextView: INode[] = [];
   ngOnInit(): void {
+   
+   
+
   }
 
+
+
+  subtractHours(date: string | undefined, numOfHours: number) {
+    return subHours(new Date(date!), numOfHours);
+  }
 }

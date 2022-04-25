@@ -1,5 +1,5 @@
 <div class="modal-page">
-  <div class="row border-bottom m-0 p-3">
+  <div class="row border-bottom m-0 p-3 fs-5">
     <div class="col-4">
       <i class="pi pi-calendar pe-1" style="color: blue"></i
       >{{ data.node?.date | date: "EEEE" }},
@@ -7,26 +7,35 @@
     </div>
     <div class="col-4">
       <i class="pi pi-clock pe-1" style="color: blue"></i>
-      {{ subtractHours(data.node.date,2) | date: "HH:mm" }} - {{subtractHours(addHours(data.node.date, 1),2) | date: "HH:mm" }}
+      {{ subtractHours(data.node.date, 2) | date: "HH:mm" }} -
+      {{ subtractHours(addHours(data.node.date, 1), 2) | date: "HH:mm" }}
     </div>
 
     <div class="col-4 text-end">
-      <i class="pi pi-chevron-left me-2"></i><i class="pi pi-chevron-right"></i>
+      <i class="modal-page__next pi pi-chevron-left me-2" (click)="previousApp()"></i
+      ><i class="modal-page__previous pi pi-chevron-right" (click)="nextApp()"></i>
     </div>
   </div>
-  <div
-    class="row modal-page__main-content p-4"
-    *ngFor="let appointment of data.sameDayAppointments; index as i"
-  >
-    <div class="row border p-3 mb-3" style="background-color: #fff" *ngIf="((appointment.date | date: 'HH:mm') === (data.node.date | date: 'HH:mm')) ">
+
+  <div *ngFor="let appointment of data.nodes; index as i">
+    <div
+      class="row border p-3 m-3 modal-page__main-content"
+      style="background-color: #fff"
+      *ngIf="
+        (appointment?.date | date: 'HH:mm') ===
+          (data.node.date | date: 'HH:mm') &&
+        (appointment?.date | date: 'dd.MM.yyyy') ===
+          (data.node.date | date: 'dd.MM.yyyy')
+      "
+    >
       <div class="row">
         <div class="col-8 pb-4">
           <div class="row">
             <div class="col-2">
-              <img src="" height="70px" width="70px" alt="" />
+              <img [src]="" height="70px" width="70px" alt="" />
             </div>
             <div class="col-10 modal-page__land-info">
-              <div>{{ appointment.property.name }}</div>
+              <div class="fw-bold">{{ appointment.property.name }}</div>
               <div style="color: #ccc">
                 {{
                   appointment.property.address.street +
@@ -46,10 +55,10 @@
         <div class="col-4">
           <div class="row">
             <div class="col-4">
-              <img src="" height="70px" width="70px" alt="" />
+              <img [src]="" height="70px" width="70px" alt="" />
             </div>
             <div class="col-8 modal-page__land-info">
-              <div>
+              <div class="fw-bold">
                 {{
                   appointment.property.user.profile.firstname +
                     " " +
@@ -63,31 +72,31 @@
           </div>
         </div>
 
-        <div class="col-12 border p-3 mb-3">
+        <!-- <div class="col-12 border p-3 mb-3">
           <div class="row">
             <div class="col">
               <i class="pi pi-calendar pe-1" style="color: blue"></i>
-              {{ data.sameDayAppointments[i]?.date | date: "dd MMMM yyyy" }}
+              {{ data.nodes[i]?.date | date: "dd MMMM yyyy" }}
             </div>
 
             <div class="col">
               <i class="pi pi-clock pe-1" style="color: blue"></i>
-              {{ data.sameDayAppointments[i]?.date | date: "hh:mm" }}
+              {{ data.nodes[i]?.date | date: "hh:mm" }}
             </div>
             <div class="col">
               <i class="pi pi-user pe-1" style="color: blue"></i>
               {{
-                data.sameDayAppointments[i]?.attendeeCount +
+                data.nodes[i]?.attendeeCount +
                   "|" +
-                  data.sameDayAppointments[i]?.maxInviteeCount
+                  data.nodes[i]?.maxInviteeCount
               }}
             </div>
             <div class="col text-end">
               <i class="pi pi-ellipsis-v" style="font-size: 1.5rem"></i>
             </div>
           </div>
-        </div>
-        <div style="cursor: pointer" class="col-12 border p-3 text-center">
+        </div> -->
+        <div style="cursor: pointer; color: orange;" class="col-12 border p-3 text-center">
           <i class="pi pi-plus-circle"></i> Create viewing
         </div>
       </div>

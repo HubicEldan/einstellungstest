@@ -1,11 +1,33 @@
 <div class="next-viewing-page">
-  <h6>NEXT VIEWING</h6>
-  <img width="350px" height="200px" src="assets/images/sample-pic.jpg" alt="" />
-  <span class="d-block">Some text about image</span>
-  <span class="d-block">Under text</span>
-  <div class="row">
-    <div class="col-6">Date</div>
-    <div class="col-6">Time</div>
+  <h6 class="p-2 fs-5">NEXT VIEWING</h6>
+  <img class="pb-2" width="400px" height="250px" src="assets/images/sample-pic.jpg" alt="" />
+  <!-- <span class="d-block"></span> -->
+  <span class="d-block pt-1 fs-4 fw-bold">{{
+    nextView[0]?.property?.name
+  }}</span>
+  <span class="d-block fs-5 pb-3" style="color: rgb(172, 168, 168)">{{
+    nextView[0]?.property?.address?.street +
+      " " +
+      nextView[0]?.property?.address?.houseNumber +
+      ", " +
+      nextView[0]?.property?.address?.zipCode +
+      " " +
+      nextView[0]?.property?.address?.city +
+      ", " +
+      nextView[0]?.property?.address?.country
+  }}</span>
+  <div class="row pb-2">
+    <div class="col-6 fs-5">
+      <i class="pi pi-calendar pe-1" style="color: blue"></i
+      >{{ nextView[0]?.date | date: "dd MMMM yyyy" }}
+    </div>
+    <div class="col-6 fs-5 d-flex align-items-center">
+      <i class="pi pi-clock pe-1" style="color: blue"></i>
+      {{ subtractHours(nextView[0]?.date,2) | date: "HH:mm" }}
+    </div>
   </div>
-  <span class="d-block">Num of people</span>
+  <span class="d-block fs-5"><i class="pi pi-user pe-2" style="color: blue"></i
+    >{{
+    nextView[0]?.attendeeCount + " | " + nextView[0]?.maxInviteeCount
+  }}</span>
 </div>

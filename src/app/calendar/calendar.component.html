@@ -34,14 +34,17 @@
           ></p-calendar>
         </div>
         <div class="row calendar-page__next-viewing">
-          <div class="p-3">
-            <app-next-viewing></app-next-viewing>
+          <div class="p-3 border-start border-end border-bottom">
+            <app-next-viewing [nextView]="nextViewing"></app-next-viewing>
           </div>
         </div>
       </div>
       <div class="col-lg-8 calendar-page__main-calendar-page">
         <app-main-calendar
+
           [selectedDate]="selectedDate"
+          [nodes]="nodes"
+    
           (nextButtonClickEvent)="next($event)"
           (perviousButtonClickEvent)="previous($event)"
         ></app-main-calendar>
