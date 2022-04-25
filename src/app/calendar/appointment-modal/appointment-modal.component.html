@@ -2,18 +2,26 @@
   <div class="row border-bottom m-0 p-3 fs-5">
     <div class="col-4">
       <i class="pi pi-calendar pe-1" style="color: blue"></i
-      >{{ data.node?.date | date: "EEEE" }},
+      >{{ data.node?.date | date: "EEEE" + ', '}}
       {{ data.node?.date | date: "dd MMMM yyyy" }}
     </div>
     <div class="col-4">
       <i class="pi pi-clock pe-1" style="color: blue"></i>
-      {{ subtractHours(data.node.date, 2) | date: "HH:mm" }} -
-      {{ subtractHours(addHours(data.node.date, 1), 2) | date: "HH:mm" }}
+      {{ subtractHours(data.node?.date, 2) | date: "HH:mm" }} -
+      {{ subtractHours(addHours(data.node?.date, 1), 2) | date: "HH:mm" }}
     </div>
 
     <div class="col-4 text-end">
-      <i class="modal-page__next pi pi-chevron-left me-2" (click)="previousApp()"></i
-      ><i class="modal-page__previous pi pi-chevron-right" (click)="nextApp()"></i>
+      <i
+        *ngIf="isLeftArrowVisible"
+        class="modal-page__next pi pi-chevron-left me-2"
+        (click)="previousApp()"
+      ></i
+      ><i
+        *ngIf="isRightArrowVisible"
+        class="modal-page__previous pi pi-chevron-right"
+        (click)="nextApp()"
+      ></i>
     </div>
   </div>
 
@@ -23,9 +31,9 @@
       style="background-color: #fff"
       *ngIf="
         (appointment?.date | date: 'HH:mm') ===
-          (data.node.date | date: 'HH:mm') &&
+          (data.node?.date | date: 'HH:mm') &&
         (appointment?.date | date: 'dd.MM.yyyy') ===
-          (data.node.date | date: 'dd.MM.yyyy')
+          (data.node?.date | date: 'dd.MM.yyyy')
       "
     >
       <div class="row">
@@ -38,15 +46,15 @@
               <div class="fw-bold">{{ appointment.property.name }}</div>
               <div style="color: #ccc">
                 {{
-                  appointment.property.address.street +
+                  appointment?.property?.address?.street +
                     " " +
-                    appointment.property.address.houseNumber +
+                    appointment?.property?.address?.houseNumber +
                     ", " +
-                    appointment.property.address.zipCode +
+                    appointment?.property?.address?.zipCode +
                     " " +
-                    appointment.property.address.city +
+                    appointment?.property?.address?.city +
                     ", " +
-                    appointment.property.address.country
+                    appointment?.property?.address?.country
                 }},
               </div>
             </div>
@@ -60,13 +68,13 @@
             <div class="col-8 modal-page__land-info">
               <div class="fw-bold">
                 {{
-                  appointment.property.user.profile.firstname +
+                  appointment?.property?.user?.profile?.firstname +
                     " " +
-                    appointment.property.user.profile.name
+                    appointment?.property?.user?.profile?.name
                 }}
               </div>
               <div>
-                {{ appointment.property.user.profile.title }}
+                {{ appointment?.property?.user?.profile?.title }}
               </div>
             </div>
           </div>
@@ -96,7 +104,10 @@
             </div>
           </div>
         </div> -->
-        <div style="cursor: pointer; color: orange;" class="col-12 border p-3 text-center">
+        <div
+          style="cursor: pointer; color: orange"
+          class="col-12 border p-3 text-center"
+        >
           <i class="pi pi-plus-circle"></i> Create viewing
         </div>
       </div>

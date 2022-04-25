@@ -23,7 +23,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   minutesArray!: Date[];
   nextViewing: INode[] = [];
   color: string = 'red';
-  constructor(private dataService: DataService, private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
 
 
@@ -31,7 +31,11 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     this.hoursAndMinutesRange();
     this.selectedDate = new Date();
     // this.getWeekRange();
-  
+
+
+   
+
+
   }
 
 
@@ -106,11 +110,29 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     this.perviousButtonClickEvent.emit(value);
   }
 
- 
+
 
 
   openDialog(node: INode, nodes: INode[]): void {
- 
+    this.sameDayAppointments = [];
+    this.sameDaySameHourAppointments = [];
+    for (let i = 0; i < this.nodes.length; i++) {
+      if (format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) {
+        this.sameDayAppointments.push(this.nodes[i]);
+      }
+    }
+
+    for (let i = 0; i < this.nodes.length; i++) {
+      if ((format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) && (format(new Date(node.date), 'HH:mm') === format(new Date(this.nodes[i].date), 'HH:mm'))) {
+        this.sameDaySameHourAppointments.push(this.nodes[i]);
+      }
+    }
+
+    console.log(this.sameDayAppointments);
+    console.log(this.sameDaySameHourAppointments);
+
+
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;

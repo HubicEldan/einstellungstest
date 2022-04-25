@@ -259,6 +259,49 @@
             "__typename": "Property"
           },
           "__typename": "Appointment"
+        },
+        {
+          "id": "2442153",
+          "date": "2022-04-25T08:00:00.000+0000",
+          "maxInviteeCount": 3,
+          "attendeeCount": 1,
+          "showContactInformation": false,
+          "contact": {
+            "firstName": "",
+            "name": "",
+            "email": "",
+            "mobile": "",
+            "phone": "",
+            "address": {},
+            "fullName": ""
+          },
+          "property": {
+            "id": "2440850",
+            "name": "Test2",
+            "inviteeCount": 1,
+            "address": {
+              "street": "Lazarettstr.",
+              "houseNumber": "3",
+              "city": "München",
+              "country": "DE",
+              "zipCode": "80636",
+              "__typename": "Address"
+            },
+            "attachments": [],
+            "user": {
+              "profile": {
+                "firstname": "Max",
+                "name": "Mustermann",
+                "phone": "",
+                "gender": "NA",
+                "title": "NONE"
+              },
+              "usertype": "COMPANYADMIN",
+              "__typename": "LandlordUser"
+            },
+            "__typename": "Property"
+          },
+          "__typename": "Appointment"
         }
       ],
       "page": {
