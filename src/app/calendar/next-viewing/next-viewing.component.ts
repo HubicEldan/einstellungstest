@@ -12,12 +12,8 @@ export class NextViewingComponent implements OnInit {
   constructor() { }
   @Input() nextView: INode[] = [];
   ngOnInit(): void {
-   
-   
 
   }
-
-
 
   subtractHours(date: string | undefined, numOfHours: number) {
     return subHours(new Date(date!), numOfHours);
