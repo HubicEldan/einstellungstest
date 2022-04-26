@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { addDays, addMonths, getDay, getHours, getMonth, getWeek, getYear, lastDayOfWeek, subDays, subHours } from 'date-fns';
 import { INode } from '../shared/models/INode';
 import { DataService } from '../shared/services/data.service';
@@ -62,10 +63,11 @@ export class CalendarComponent implements OnInit {
   selectedDate: Date = new Date();
 
 
-  selectedCity: any;
+  selectedDropdownItem: any;
 
   ngOnInit(): void {
-    console.log(this.selectedDate);
+  
+    
 
     this.dataService.getJsonData().subscribe({
       next: (response) => {
@@ -74,8 +76,6 @@ export class CalendarComponent implements OnInit {
 
 
         for (let i = 0; i < this.nodes.length; i++) {
-          console.log(getHours(subHours(new Date(this.nodes[i].date), 2)));
-
           if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
             this.nextViewing.push(this.nodes[i]);
           } else if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {

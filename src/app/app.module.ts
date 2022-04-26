@@ -26,6 +26,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 //material 
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ImageModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
