@@ -42,12 +42,11 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     }
   }
 
+
+
   subtractHours(date: string | undefined, numOfHours: number) {
     return subHours(new Date(date!), numOfHours);
   }
-
-
-
 
   getWeekRange(): Date[] {
     this.weekDaysArray = eachDayOfInterval({
@@ -69,8 +68,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   }
 
 
-
-
   hoursAndMinutesRange() {
     for (let i = 0; i <= this.getHoursRange().length - 2; i++) {
       this.minutesArray = eachMinuteOfInterval({
@@ -80,10 +77,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
       this.hoursAndMinutesRangeArray.push(this.minutesArray)
     }
-
-
   }
-
 
 
   nextWeek(value: boolean) {

@@ -25,18 +25,19 @@ export class CalendarComponent implements OnInit {
   selectedDropdownItem: any;
 
   ngOnInit(): void {
+    //get data from store
     this.store.dispatch(new nodeActions.LoadNodes())
     this.store.subscribe(state => { this.nodes = state.nodes.nodes })
     let nodesForSort = [...this.nodes];
+
+    //sort appointments
     this.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
 
+    //next appointment depending on current date
     for (let i = 0; i < this.nodes.length; i++) {
       if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {
         this.nextViewing.push(this.nodes[i]);
-        
-        
-        
       } else if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
         this.nextViewing.push(this.nodes[i]);
       } else {
@@ -66,7 +67,7 @@ export class CalendarComponent implements OnInit {
     // this.selectedDate = addMonths(this.selectedDate, 1);
   }
 
-
+  //next week change
   next(isNextClicked: boolean) {
     if (isNextClicked) {
       this.selectedDate = addDays(this.selectedDate, 6);
@@ -74,6 +75,8 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+
+  //previous week change
   previous(isPreviousClicked: boolean) {
     if (isPreviousClicked) {
       this.selectedDate = subDays(this.selectedDate, 6);
