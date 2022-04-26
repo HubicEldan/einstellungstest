@@ -15,14 +15,14 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
   @Input() nodes: INode[] = [];
-  sameDaySameHourAppointments: INode[] = [];
-  sameDayAppointments: INode[] = [];
+ 
   hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
   nextViewing: INode[] = [];
-  color: string = 'red';
+
+
   constructor(private dialog: MatDialog) { }
 
 
@@ -30,13 +30,11 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.hoursAndMinutesRange();
     this.selectedDate = new Date();
-    // this.getWeekRange();
-
-
    
-
-
   }
+
+
+  
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,8 +45,8 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     }
   }
 
-  subtractHours(date: string, numOfHours: number) {
-    return subHours(new Date(date), numOfHours);
+  subtractHours(date: string | undefined, numOfHours: number) {
+    return subHours(new Date(date!), numOfHours);
   }
 
 
@@ -114,19 +112,19 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
 
   openDialog(node: INode, nodes: INode[]): void {
-    this.sameDayAppointments = [];
-    this.sameDaySameHourAppointments = [];
-    for (let i = 0; i < this.nodes.length; i++) {
-      if (format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) {
-        this.sameDayAppointments.push(this.nodes[i]);
-      }
-    }
+    // this.sameDayAppointments = [];
+    // this.sameDaySameHourAppointments = [];
+    // for (let i = 0; i < this.nodes.length; i++) {
+    //   if (format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) {
+    //     this.sameDayAppointments.push(this.nodes[i]);
+    //   }
+    // }
 
-    for (let i = 0; i < this.nodes.length; i++) {
-      if ((format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) && (format(new Date(node.date), 'HH:mm') === format(new Date(this.nodes[i].date), 'HH:mm'))) {
-        this.sameDaySameHourAppointments.push(this.nodes[i]);
-      }
-    }
+    // for (let i = 0; i < this.nodes.length; i++) {
+    //   if ((format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) && (format(new Date(node.date), 'HH:mm') === format(new Date(this.nodes[i].date), 'HH:mm'))) {
+    //     this.sameDaySameHourAppointments.push(this.nodes[i]);
+    //   }
+    // }
 
     // console.log(this.sameDayAppointments);
     // console.log(this.sameDaySameHourAppointments);

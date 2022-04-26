@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { addDays, addHours, format, subHours } from 'date-fns';
-import { is } from 'date-fns/locale';
-import { groupBy } from 'rxjs';
+import { addHours, format, subHours } from 'date-fns';
+
 import { INode } from 'src/app/shared/models/INode';
 
 @Component({
@@ -29,15 +28,16 @@ export class AppointmentModalComponent implements OnInit {
 
 
       if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
-
+      
         this.next = i++;
+        
         console.log(this.next);
 
         if (i === this.data.nodes.length - 1) {
           this.isRightArrowVisible = false;
           this.isLeftArrowVisible = true;
           this.next = this.data.nodes.length - 2;
-        }
+        
 
 
       } else {
@@ -46,7 +46,10 @@ export class AppointmentModalComponent implements OnInit {
         this.isLeftArrowVisible = true;
       }
     }
+  }
+  
     this.next++;
+  
     this.data.node = this.data.nodes[this.next];
 
 
@@ -58,8 +61,12 @@ export class AppointmentModalComponent implements OnInit {
     for (let i = 0; i < this.data.nodes.length; i++) {
       if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
         this.previous = i++;
-        if (i === 0) {
+        
+        
+        if (this.previous === 0) {
           this.previous = 1;
+          this.isRightArrowVisible = true;
+          this.isLeftArrowVisible = false;
         } else {
           this.isRightArrowVisible = true;
           this.isLeftArrowVisible = true;
@@ -71,10 +78,7 @@ export class AppointmentModalComponent implements OnInit {
 
     this.previous--;
     this.data.node = this.data.nodes[this.previous];
-    if (this.previous === 1) {
-      this.isRightArrowVisible = true;
-      this.isLeftArrowVisible = false;
-    }
+    
 
 
   }

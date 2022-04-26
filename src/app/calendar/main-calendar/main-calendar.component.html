@@ -34,26 +34,27 @@
         </div>
       </div>
       <div
-        class="col border-end d-flex justify-content-start align-items-end m-1"
-        *ngFor="let days of weekDaysArray; index as j"
+        class="col border-end align-items-end justify-content-start"
+        *ngFor="let days of weekDaysArray"
         [id]="i"
       >
-       
-          <div class="col p-1" *ngFor="let node of nodes; index as k">
-            <div
-            style="cursor: pointer;"
-              *ngIf="
-                (node.date | date: 'dd.MM.yyyy') ===
-                  (days | date: 'dd.MM.yyyy') &&
-                (subtractHours(node.date, 2) | date: 'HH:mm') ===
-                  (hours[0] | date: 'HH:mm')
-              "
-              (click)="openDialog(node, nodes)"
-            >
-            <p-image src="{{node.property?.imageUrl}}" alt="Image" height="40" width="40"></p-image>
-            </div>
+        
+
+        <div class="ms-1 mt-1" *ngFor="let node of nodes; index as k">
+          <div
+            class="main-calendar-page__appointment"
+            *ngIf="
+              (node.date | date: 'dd.MM.yyyy') ===
+                (days | date: 'dd.MM.yyyy') &&
+              (subtractHours(node.date, 2) | date: 'HH:mm') ===
+                (hours[0] | date: 'HH:mm')
+            "
+            (click)="openDialog(node, nodes)"
+          >
+          <div>{{k+1 + '. ' + node.property.name}}</div>
+            <p-avatar image="{{ node.property?.imageUrl }}"></p-avatar>
           </div>
-    
+        </div>
       </div>
     </div>
   </div>

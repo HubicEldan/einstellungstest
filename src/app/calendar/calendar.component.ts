@@ -14,7 +14,7 @@ export class CalendarComponent implements OnInit {
   nodes: INode[] = [];
   cities: any[] = [];
   nextViewing: INode[] = [];
-  arr: INode[] = []
+  
   // emptyNode: INode = {
   //   id: '',
   //   date: '',
@@ -76,10 +76,12 @@ export class CalendarComponent implements OnInit {
         for (let i = 0; i < this.nodes.length; i++) {
           console.log(getHours(subHours(new Date(this.nodes[i].date), 2)));
 
-          if (getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate) && getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
+          if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
+            this.nextViewing.push(this.nodes[i]);
+          } else if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {
             this.nextViewing.push(this.nodes[i]);
           } else {
-            
+
           }
         }
 

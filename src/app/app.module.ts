@@ -17,12 +17,14 @@ import { CalendarModule } from 'primeng/calendar';
 import { NextViewingComponent } from './calendar/next-viewing/next-viewing.component';
 import { MainCalendarComponent } from './calendar/main-calendar/main-calendar.component';
 import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
-import {ImageModule} from 'primeng/image';
+import { ImageModule } from 'primeng/image';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 
 
 //material 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MainCalendarComponent,
     ChangeToMonthNamePipe,
     AppointmentModalComponent,
-   
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -44,7 +46,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     DropdownModule,
     CalendarModule,
     MatDialogModule,
-    ImageModule
+    ImageModule,
+    AvatarModule,
+    AvatarGroupModule
   ],
   providers: [],
   bootstrap: [AppComponent]
