@@ -25,15 +25,19 @@ export class CalendarComponent implements OnInit {
   selectedDropdownItem: any;
 
   ngOnInit(): void {
-  this.store.dispatch(new nodeActions.LoadNodes())
+    this.store.dispatch(new nodeActions.LoadNodes())
     this.store.subscribe(state => { this.nodes = state.nodes.nodes })
-    
+    let nodesForSort = [...this.nodes];
+    this.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
 
     for (let i = 0; i < this.nodes.length; i++) {
-      if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
+      if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {
         this.nextViewing.push(this.nodes[i]);
-      } else if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {
+        
+        
+        
+      } else if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
         this.nextViewing.push(this.nodes[i]);
       } else {
 
