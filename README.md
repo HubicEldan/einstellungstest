@@ -4,8 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Technologies used:
 
-- Angular 13.2.5, NgRx, Angular Material, PrimeNg
+- Angular 13.2.5, NgRx, Angular Material, PrimeNg --> library for dates (date-fns)
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
-
-
