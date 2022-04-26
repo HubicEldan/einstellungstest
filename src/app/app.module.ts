@@ -27,6 +27,15 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
+//ngrx
+import { StoreModule } from '@ngrx/store'
+import { nodeReducer } from './calendar/state/node.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule, Actions } from '@ngrx/effects';
+import { NodeEffect } from './calendar/state/node.effects';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +59,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     ImageModule,
     AvatarModule,
     AvatarGroupModule,
+    StoreModule.forRoot({"nodes": nodeReducer}),
+    StoreDevtoolsModule.instrument(),
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

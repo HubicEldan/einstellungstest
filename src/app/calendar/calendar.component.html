@@ -3,7 +3,7 @@
     <div class="row calendar-page__dropdowns">
       <div class="col-lg-4 p-4">
         <p-dropdown
-          [options]="cities"
+          [options]="options"
           [(ngModel)]="selectedDropdownItem"
           placeholder="All properties"
           optionLabel="name"
@@ -12,7 +12,7 @@
       </div>
       <div class="col-lg-4 p-4">
         <p-dropdown
-          [options]="cities"
+          [options]="options"
           [(ngModel)]="selectedDropdownItem"
           placeholder="All agents"
           optionLabel="name"

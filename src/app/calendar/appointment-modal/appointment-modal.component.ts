@@ -19,6 +19,8 @@ export class AppointmentModalComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let nodesForSort = [...this.data.nodes];
+    this.data.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   }
 
@@ -27,29 +29,26 @@ export class AppointmentModalComponent implements OnInit {
     for (let i = 0; i < this.data.nodes.length; i++) {
 
 
-      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
-      
+      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i]?.date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i]?.date), 'HH:mm')))) {
+
         this.next = i++;
-        
-        console.log(this.next);
+
 
         if (i === this.data.nodes.length - 1) {
           this.isRightArrowVisible = false;
           this.isLeftArrowVisible = true;
           this.next = this.data.nodes.length - 2;
-        
 
+        } else {
 
-      } else {
-
-        this.isRightArrowVisible = true;
-        this.isLeftArrowVisible = true;
+          this.isRightArrowVisible = true;
+          this.isLeftArrowVisible = true;
+        }
       }
     }
-  }
-  
+
     this.next++;
-  
+
     this.data.node = this.data.nodes[this.next];
 
 
@@ -61,8 +60,8 @@ export class AppointmentModalComponent implements OnInit {
     for (let i = 0; i < this.data.nodes.length; i++) {
       if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
         this.previous = i++;
-        
-        
+
+
         if (this.previous === 0) {
           this.previous = 1;
           this.isRightArrowVisible = true;
@@ -78,7 +77,7 @@ export class AppointmentModalComponent implements OnInit {
 
     this.previous--;
     this.data.node = this.data.nodes[this.previous];
-    
+
 
 
   }

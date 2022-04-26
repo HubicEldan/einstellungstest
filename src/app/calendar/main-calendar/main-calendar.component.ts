@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { addDays, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, format, getDate, getHours, getYear, subHours } from 'date-fns';
+import { addDays, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, getDate, getHours, getYear, subHours } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
-import { DataService } from 'src/app/shared/services/data.service';
 import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
 
 @Component({
@@ -15,7 +14,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
   @Input() nodes: INode[] = [];
- 
+
   hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
@@ -30,18 +29,16 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.hoursAndMinutesRange();
     this.selectedDate = new Date();
-   
+
   }
 
 
-  
+
 
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
-      // this.appointmentsForDay = [];
       this.getWeekRange();
-      // this.getAppointmentsForToday();
     }
   }
 
@@ -50,17 +47,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   }
 
 
-  //promijeniti ovu metodu, uzima sve appointmentse za čitavu sedmicu, a treba da uzme samo za jedan dan
-  // getAppointmentsForToday() {
-  //   this.formatedWeekDays.forEach(element => {
-  //     this.nodes.forEach(node => {
-  //       if (format(new Date(node.date), 'dd.MM.yyyy') === element) {
-  //         console.log(node);
-  //         this.appointmentsForDay.push(node);
-  //       }
-  //     })
-  //   })
-  // }
+
 
   getWeekRange(): Date[] {
     this.weekDaysArray = eachDayOfInterval({
@@ -112,22 +99,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
 
   openDialog(node: INode, nodes: INode[]): void {
-    // this.sameDayAppointments = [];
-    // this.sameDaySameHourAppointments = [];
-    // for (let i = 0; i < this.nodes.length; i++) {
-    //   if (format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) {
-    //     this.sameDayAppointments.push(this.nodes[i]);
-    //   }
-    // }
-
-    // for (let i = 0; i < this.nodes.length; i++) {
-    //   if ((format(new Date(node.date), 'dd.MM.yyyy') === format(new Date(this.nodes[i].date), 'dd.MM.yyyy')) && (format(new Date(node.date), 'HH:mm') === format(new Date(this.nodes[i].date), 'HH:mm'))) {
-    //     this.sameDaySameHourAppointments.push(this.nodes[i]);
-    //   }
-    // }
-
-    // console.log(this.sameDayAppointments);
-    // console.log(this.sameDaySameHourAppointments);
 
 
 
