@@ -28,10 +28,9 @@ export class AppointmentModalComponent implements OnInit {
   nextApp() {
     for (let i = 0; i < this.data.nodes.length; i++) {
 
+      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
 
-      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i]?.date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i]?.date), 'HH:mm')))) {
-
-        this.next = i++;
+        this.next = i;
 
 
         if (i === this.data.nodes.length - 1) {
@@ -48,19 +47,14 @@ export class AppointmentModalComponent implements OnInit {
     }
 
     this.next++;
-
     this.data.node = this.data.nodes[this.next];
-
-
   }
 
 
   previousApp() {
-
     for (let i = 0; i < this.data.nodes.length; i++) {
       if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
         this.previous = i++;
-
 
         if (this.previous === 0) {
           this.previous = 1;
@@ -74,12 +68,8 @@ export class AppointmentModalComponent implements OnInit {
       }
     }
 
-
     this.previous--;
     this.data.node = this.data.nodes[this.previous];
-
-
-
   }
 
 

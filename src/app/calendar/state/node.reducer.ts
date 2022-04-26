@@ -92,7 +92,97 @@ const initialState = {
         },
         {
             id: "2442901",
-          date: "2022-04-25T08:00:00.000+0000",
+            date: "2022-04-25T08:00:00.000+0000",
+            maxInviteeCount: 3,
+            attendeeCount: 1,
+            showContactInformation: false,
+            contact: {
+                firstName: "",
+                name: "",
+                email: "",
+                mobile: "",
+                phone: "",
+                address: {},
+                fullName: ""
+            },
+            property: {
+                id: "2440850",
+                name: "Flat ohne name",
+                imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1175&q=80",
+                inviteeCount: 1,
+                address: {
+                    street: "Lazarettstr.",
+                    houseNumber: "3",
+                    city: "München",
+                    country: "DE",
+                    zipCode: "80636",
+                    __typename: "Address"
+                },
+                attachments: [],
+                user: {
+                    profile: {
+                        firstname: "Max",
+                        imageUrl: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+                        name: "Mustermann",
+                        phone: "",
+                        gender: "NA",
+                        title: "NONE"
+                    },
+                    usertype: "COMPANYADMIN",
+                    __typename: "LandlordUser"
+                },
+                __typename: "Property"
+            },
+            __typename: "Appointment"
+        },
+        {
+            id: "2442902",
+            date: "2022-04-25T08:00:00.000+0000",
+            maxInviteeCount: 3,
+            attendeeCount: 1,
+            showContactInformation: false,
+            contact: {
+                firstName: "",
+                name: "",
+                email: "",
+                mobile: "",
+                phone: "",
+                address: {},
+                fullName: ""
+            },
+            property: {
+                id: "2440850",
+                name: "Flat ohne name",
+                imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1175&q=80",
+                inviteeCount: 1,
+                address: {
+                    street: "Lazarettstr.",
+                    houseNumber: "3",
+                    city: "München",
+                    country: "DE",
+                    zipCode: "80636",
+                    __typename: "Address"
+                },
+                attachments: [],
+                user: {
+                    profile: {
+                        firstname: "Max",
+                        imageUrl: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+                        name: "Mustermann",
+                        phone: "",
+                        gender: "NA",
+                        title: "NONE"
+                    },
+                    usertype: "COMPANYADMIN",
+                    __typename: "LandlordUser"
+                },
+                __typename: "Property"
+            },
+            __typename: "Appointment"
+        },
+        {
+            id: "2442902",
+            date: "2022-04-27T08:00:00.000+0000",
             maxInviteeCount: 3,
             attendeeCount: 1,
             showContactInformation: false,
