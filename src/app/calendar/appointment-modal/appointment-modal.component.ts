@@ -13,56 +13,13 @@ import { INode } from 'src/app/shared/models/INode';
 export class AppointmentModalComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode | undefined, nodes: INode[], date: Date }) { }
-  nextAppointments: INode[] = [];
-  hideArrows: boolean = false;
-  arr: any[] = [];
   next!: number;
   previous!: number;
   isLeftArrowVisible: boolean = true;
   isRightArrowVisible: boolean = true;
+
+
   ngOnInit(): void {
-    console.log(this.data);
-
-
-    for (let i = 0; i < this.data.nodes.length; i++) {
-
-      if (this.data.node === this.data.nodes[i]) {
-        this.next = i;
-        if (i === this.data.nodes.length - 1) {
-          this.isRightArrowVisible = false;
-          this.isLeftArrowVisible = true;
-          this.next = this.data.nodes.length - 2;
-        }
-
-
-      } else {
-
-
-      }
-    }
-
-    // for (let i = 0; i < this.data.appointmentsForDay.length; i++) {
-    //   this.arr.push(this.data.appointmentsForDay.slice(i));
-    //   console.log(this.arr);
-
-    // }
-
-
-    for (let i = 0; i < this.data.nodes.length; i++) {
-      if (this.data.node === this.data.nodes[i]) {
-        this.previous = i;
-
-
-        if (i === 0) {
-          this.isLeftArrowVisible = false;
-          this.isRightArrowVisible = true;
-          this.previous = 1;
-        }
-
-
-      }
-    }
-
 
   }
 
@@ -72,10 +29,8 @@ export class AppointmentModalComponent implements OnInit {
 
 
       if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
-        i++;
 
-
-        this.next = i;
+        this.next = i++;
         console.log(this.next);
 
         if (i === this.data.nodes.length - 1) {
@@ -92,10 +47,6 @@ export class AppointmentModalComponent implements OnInit {
       }
     }
     this.next++;
-    // if(this.next >= 0 && this.next <= this.data.nodes.length - 1) {
-    //   this.isRightArrowVisible = true;
-    // }
-
     this.data.node = this.data.nodes[this.next];
 
 
@@ -106,26 +57,24 @@ export class AppointmentModalComponent implements OnInit {
 
     for (let i = 0; i < this.data.nodes.length; i++) {
       if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
-        i--;
-        this.previous = i;
-
-
+        this.previous = i++;
         if (i === 0) {
-          this.isRightArrowVisible = true;
-          this.isLeftArrowVisible = false;
           this.previous = 1;
         } else {
           this.isRightArrowVisible = true;
           this.isLeftArrowVisible = true;
         }
 
-
       }
     }
 
-    this.previous--;
 
+    this.previous--;
     this.data.node = this.data.nodes[this.previous];
+    if (this.previous === 1) {
+      this.isRightArrowVisible = true;
+      this.isLeftArrowVisible = false;
+    }
 
 
   }

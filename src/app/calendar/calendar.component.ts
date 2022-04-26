@@ -76,36 +76,12 @@ export class CalendarComponent implements OnInit {
         for (let i = 0; i < this.nodes.length; i++) {
           console.log(getHours(subHours(new Date(this.nodes[i].date), 2)));
 
-          if (getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate) || getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
+          if (getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate) && getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
             this.nextViewing.push(this.nodes[i]);
           } else {
             
           }
         }
-
-
-
-
-
-        // for (let i = 0; i < this.nodes.length; i++) {
-        //   for (let k = i + 1; k < this.nodes.length; k++) {
-        //     if ((format(new Date(this.nodes[i].date), 'dd.MM.yyyy') === format(new Date(this.nodes[k].date), 'dd.MM.yyyy'))) {
-        //       this.sameDayAppointments.push(this.nodes[k])
-        //     }
-        //     if ((format(new Date(this.nodes[i].date), 'dd.MM.yyyy') === format(new Date(this.nodes[k].date), 'dd.MM.yyyy')) && (format(new Date(this.nodes[i].date), 'HH:mm') === format(new Date(this.nodes[k].date), 'HH:mm'))) {
-        //       this.sameDaySameHourAppointments.push(this.nodes[k])
-        //     }
-        //   }
-        // }
-
-
-
-
-        // for (let i = 0; i < this.nodes.length; i++) {
-        //   this.arr.push(this.nodes.slice(i));
-        //   console.log(this.arr);
-
-        // }
 
       },
       error: () => {
@@ -121,11 +97,11 @@ export class CalendarComponent implements OnInit {
 
 
     this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
+      { name: 'Dropdown item 1', code: 'NY' },
+      { name: 'Dropdown item 1', code: 'RM' },
+      { name: 'Dropdown item 1', code: 'LDN' },
+      { name: 'Dropdown item 1', code: 'IST' },
+      { name: 'Dropdown item 1', code: 'PRS' }
     ];
 
 

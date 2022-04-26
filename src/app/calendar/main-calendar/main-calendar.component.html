@@ -34,30 +34,27 @@
         </div>
       </div>
       <div
-        class="col text-center border-end"
+        class="col border-end d-flex justify-content-start align-items-end m-1"
         *ngFor="let days of weekDaysArray; index as j"
         [id]="i"
       >
-        <div class="col" *ngFor="let node of nodes; index as k">
-          <div
-            *ngIf="
-              (node.date | date: 'dd.MM.yyyy') ===
-                (days | date: 'dd.MM.yyyy') &&
-              (subtractHours(node.date, 2) | date: 'HH:mm') ===
-                (hours[0] | date: 'HH:mm')
-            "
-            (click)="openDialog(node, nodes)"
-          >
-          
-
-            {{ nodes[i] }}
+       
+          <div class="col p-1" *ngFor="let node of nodes; index as k">
+            <div
+            style="cursor: pointer;"
+              *ngIf="
+                (node.date | date: 'dd.MM.yyyy') ===
+                  (days | date: 'dd.MM.yyyy') &&
+                (subtractHours(node.date, 2) | date: 'HH:mm') ===
+                  (hours[0] | date: 'HH:mm')
+              "
+              (click)="openDialog(node, nodes)"
+            >
+            <p-image src="{{node.property?.imageUrl}}" alt="Image" height="40" width="40"></p-image>
+            </div>
           </div>
-        </div>
+    
       </div>
     </div>
   </div>
 </div>
-
-
-
-

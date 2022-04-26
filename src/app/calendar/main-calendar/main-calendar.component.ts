@@ -128,8 +128,8 @@ export class MainCalendarComponent implements OnInit, OnChanges {
       }
     }
 
-    console.log(this.sameDayAppointments);
-    console.log(this.sameDaySameHourAppointments);
+    // console.log(this.sameDayAppointments);
+    // console.log(this.sameDaySameHourAppointments);
 
 
 

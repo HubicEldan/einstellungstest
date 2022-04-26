@@ -17,7 +17,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { NextViewingComponent } from './calendar/next-viewing/next-viewing.component';
 import { MainCalendarComponent } from './calendar/main-calendar/main-calendar.component';
 import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
-
+import {ImageModule} from 'primeng/image';
 
 
 
@@ -32,7 +32,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MainCalendarComponent,
     ChangeToMonthNamePipe,
     AppointmentModalComponent,
-
+   
   ],
   imports: [
     BrowserAnimationsModule,
@@ -43,7 +43,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     CommonModule,
     DropdownModule,
     CalendarModule,
-    MatDialogModule
+    MatDialogModule,
+    ImageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
