@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { INode } from "src/app/shared/models/INode";
+import { IData, INode } from "src/app/shared/models/INode";
 
 
 export enum INodeActionTypes {
@@ -15,7 +15,10 @@ export class LoadNodes implements Action {
 
 export class LoadNodesSuccess implements Action {
     readonly type = INodeActionTypes.LOAD_NODES_SUCCESS
-    constructor(public payload: INode[]) { }
+    constructor(public payload: any) { 
+    
+        
+    }
 }
 export class LoadNodesFail implements Action {
     readonly type = INodeActionTypes.LOAD_NODES_FAIL

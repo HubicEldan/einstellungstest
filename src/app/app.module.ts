@@ -31,6 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { StoreModule } from '@ngrx/store'
 import { nodeReducer } from './calendar/state/node.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { NodeEffect } from './calendar/state/node.effects';
 
 
 
@@ -58,9 +60,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     ImageModule,
     AvatarModule,
     AvatarGroupModule,
-    StoreModule.forRoot({"nodes": nodeReducer}),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature("data", nodeReducer),
+    EffectsModule.forFeature([NodeEffect]),
     StoreDevtoolsModule.instrument(),
-   
+
   ],
   providers: [],
   bootstrap: [AppComponent]
