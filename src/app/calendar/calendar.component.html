@@ -26,7 +26,6 @@
         <div class="row">
           <p-calendar
             (onMonthChange)="onMonthChange()"
-            
             class="p-0"
             [(ngModel)]="selectedDate"
             [inline]="true"
@@ -41,10 +40,8 @@
       </div>
       <div class="col-lg-8 calendar-page__main-calendar-page">
         <app-main-calendar
-
           [selectedDate]="selectedDate"
           [nodes]="nodes"
-         
           (nextButtonClickEvent)="next($event)"
           (perviousButtonClickEvent)="previous($event)"
         ></app-main-calendar>

@@ -26,12 +26,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     //get data from store
     this.store.dispatch(new nodeActions.LoadNodes())
-
-    // console.log(this.store);
-
     this.store.subscribe(state => state?.data?.data?.appointments && this.initNodes(state.data.data.appointments.nodes))
-
-
     this.options = [
   { name: 'Dropdown item 1', code: 'NY' },
   { name: 'Dropdown item 1', code: 'RM' },
@@ -46,10 +41,9 @@ export class CalendarComponent implements OnInit {
 initNodes(nodes: INode[]) {
   this.nodes = nodes;
   let nodesForSort = [...this.nodes];
-  
+
   //sort appointments
   this.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
 
   //next appointment depending on current date
   for (let i = 0; i < this.nodes.length; i++) {
@@ -71,10 +65,8 @@ initNodes(nodes: INode[]) {
   next(isNextClicked: boolean) {
     if (isNextClicked) {
       this.selectedDate = addDays(this.selectedDate, 6);
-
     }
   }
-
 
   //previous week change
   previous(isPreviousClicked: boolean) {

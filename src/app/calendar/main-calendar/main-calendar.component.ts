@@ -20,10 +20,10 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   hoursArray!: Date[];
   minutesArray!: Date[];
   nextViewing: INode[] = [];
+ 
 
 
   constructor(private dialog: MatDialog) { }
-
 
 
   ngOnInit(): void {
@@ -33,15 +33,11 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   }
 
 
-
-
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       this.getWeekRange();
     }
   }
-
 
 
   subtractHours(date: string | undefined, numOfHours: number) {

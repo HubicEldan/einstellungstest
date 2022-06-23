@@ -1,50 +1,73 @@
 .main-calendar-page {
-    &__date-range-section {
-        border-top: 1px solid var(--color-border);
-        border-bottom: 1px solid var(--color-border);
-        padding: 1.35rem;
-    }
+  &__date-range-section {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.35rem;
+  }
 
-    &__week-range-section {
-        border-bottom: 1px solid var(--color-border);
-        padding-right: 1.2rem;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        color: #858585;
-    }
+  &__week-range-section {
+    border-bottom: 1px solid var(--color-border);
+    padding-right: 1.2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #858585;
+  }
 
 
-    &__month-range-section {
-        height: 45rem;
-    }
+  &__month-range-section {
+    height: 45rem;
+  }
 
-    &__hours {
-        padding-bottom: 6rem;
-        padding-left: 0.5rem;
-        padding-top: 0.2rem;
-        font-weight: 500;
-    }
+  &__hours {
+    padding-bottom: 6rem;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    font-weight: 500;
+  }
 
-    &__chevrons {
-        cursor: pointer;
-    }
+  &__chevrons {
+    cursor: pointer;
+  }
 
-    &__appointments {
-        color: #fff;
-        background-color: #3e3e3e;
-       
-        cursor: pointer;
-    }
+  &__appointments {
+    color: #fff;
+    background-color: #3e3e3e;
 
-    &__appointment {
-        cursor: pointer;
-     
-        padding: 0.2rem;
-       
-    }
+    cursor: pointer;
+  }
 
-    
+  &__appointment {
+    cursor: pointer;
+
+    padding: 0.2rem;
+
+  }
+
+
 
 }
 
+.hide-element {
+  display: none;
 
+}
+
+.day-cell:hover {
+  background-color: #e2dddd;
+}
+
+
+.week-days {
+  background-color: red;
+}
+
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+
+}

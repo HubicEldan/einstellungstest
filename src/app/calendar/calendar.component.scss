@@ -1,11 +1,11 @@
 .calendar-page {
     display: flex;
     align-items: center;
-    height: 100%;
+    // height: 100%;
 
     &__main-container {
         background-color: #fff;
-        
+
     }
 
     &__dropdowns {
@@ -26,9 +26,12 @@
 }
 
 ::ng-deep .p-calendar .p-datepicker {
-    width: 27.5rem;
+    width: 27.6rem;
 }
 
+::ng-deep .p-datepicker .p-datepicker-header {
+  padding: 0.56rem;
+}
 
 ::ng-deep .p-datepicker table td {
     padding: 0.2rem;

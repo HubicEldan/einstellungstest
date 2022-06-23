@@ -14,34 +14,69 @@
   </div>
   <div class="row main-calendar-page__week-range-section">
     <div class="col-1"></div>
-    <div class="col text-center" *ngFor="let days of getWeekRange()">
+    <div class="col text-center" *ngFor="let days of getWeekRange()" [id]="days | date: 'd'">
       {{ days | date: "d EE" }}
     </div>
   </div>
 
-  <div class="main-calendar-page__month-range-section overflow-auto">
-    <div
-      class="row border-top"
-      *ngFor="let hours of hoursAndMinutesRangeArray; index as i"
-    >
-      <div class="col-1 border-end main-calendar-page__hours">
-        {{ hours[0] | date: "HH:mm" }}
-        <div
-          [id]="minutes | date: 'mm'"
-          *ngFor="let minutes of hoursAndMinutesRangeArray[i]"
-        >
-          <div style="font-size: 0.01rem">{{ minutes | date: "mm" }}</div>
-        </div>
-      </div>
-      <div
-        class="col border-end align-items-end justify-content-start"
-        *ngFor="let days of weekDaysArray"
-        [id]="i"
-      >
-        
 
-        <div class="ms-1 mt-1" *ngFor="let node of nodes; index as k">
+    <div class="main-calendar-page__month-range-section overflow-auto">
+      <div
+        class="row border-top"
+        *ngFor="let hours of hoursAndMinutesRangeArray; index as i"
+      >
+        <div
+          class="col-1 border-end main-calendar-page__hours"
+          [id]="hours[0] | date: 'HH:mm'"
+        >
+          {{ hours[0] | date: "HH:mm" }}
           <div
+            [id]="minutes | date: 'mm'"
+            *ngFor="let minutes of hoursAndMinutesRangeArray[i];"
+          >
+            <div style="font-size: 0.01rem">{{ minutes | date: "mm" }}</div>
+          </div>
+        </div>
+
+
+
+
+        <div
+          class="day-cell col border-end"
+          *ngFor="let days of weekDaysArray; let j = index;"
+          [id]="days | date: 'd'"
+        >
+        <h6 class="w-100 pt-2 pb-5 text-center">VIEWINGS {{i}}</h6>
+        <div class="row align-items-start">
+
+          <div
+          [ngClass]="{
+            'hide-element': !(
+              (node.date | date: 'dd.MM.yyyy') ===
+                (days | date: 'dd.MM.yyyy') &&
+              (subtractHours(node.date, 2) | date: 'HH:mm') ===
+                (hours[0] | date: 'HH:mm')
+            )
+          }"
+          class="col-2 ps-2 pb-2 pt-2"
+          *ngFor="let node of nodes"
+
+        >
+          <div (click)="openDialog(node, nodes)">
+            <img class="avatar" src="{{ node.property?.imageUrl }}" />
+          </div>
+        </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+</div>
+
+<!-- <p-avatar  image="{{ node.property?.imageUrl }}"></p-avatar> -->
+
+<!-- <div
             class="main-calendar-page__appointment"
             *ngIf="
               (node.date | date: 'dd.MM.yyyy') ===
@@ -49,13 +84,34 @@
               (subtractHours(node.date, 2) | date: 'HH:mm') ===
                 (hours[0] | date: 'HH:mm')
             "
-            (click)="openDialog(node, nodes)"
+
           >
-          <!-- <div>{{k+1 + '. ' + node.property.name}}</div> -->
-            <p-avatar image="{{ node.property?.imageUrl }}"></p-avatar>
+
+
+          </div> -->
+<!-- <p-avatarGroup  label="P">
+            <p-avatar label="P"></p-avatar>
+            <p-avatar icon="pi pi-search"></p-avatar>
+            <p-avatar label="user.png"></p-avatar>
+            <p-avatar label="+2"></p-avatar>
+        </p-avatarGroup> -->
+<!-- <div>{{k+1 + '. ' + node.property.name}}</div> -->
+
+<!-- <div
+          [ngClass]="{
+            'hide-element': !(
+              (node.date | date: 'dd.MM.yyyy') ===
+                (days | date: 'dd.MM.yyyy') &&
+              (subtractHours(node.date, 2) | date: 'HH:mm') ===
+                (hours[0] | date: 'HH:mm')
+            )
+          }"
+          class="col-2 ps-2 pb-2"
+          *ngFor="let node of nodes"
+
+        >
+          <div (click)="openDialog(node, nodes)">
+            <img class="avatar" src="{{ node.property?.imageUrl }}" />
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+      -->
