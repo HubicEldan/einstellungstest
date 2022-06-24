@@ -42,18 +42,40 @@
     padding: 0.2rem;
 
   }
+  &__property-picture-group {
+    // margin-left: 0.6rem;
+    // margin-top: 4.5rem
+    padding-left: 1rem;
+    padding-bottom: 0.8rem;
 
+
+  }
 
 
 }
+
+.app-day {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #e7e4e4;
+}
+
+// .app-day:hover {
+//  background-color: blue;
+//  opacity: 0.8;
+//  cursor: pointer;
+// }
 
 .hide-element {
   display: none;
 
 }
 
-.day-cell:hover {
+.day-cell {
   background-color: #e2dddd;
+  cursor: pointer;
+
 }
 
 

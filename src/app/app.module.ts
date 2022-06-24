@@ -33,6 +33,7 @@ import { nodeReducer } from './calendar/state/node.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { NodeEffect } from './calendar/state/node.effects';
+import { NodesToArrayPipe } from './nodes-to-array.pipe';
 
 
 
@@ -45,6 +46,7 @@ import { NodeEffect } from './calendar/state/node.effects';
     MainCalendarComponent,
     ChangeToMonthNamePipe,
     AppointmentModalComponent,
+    NodesToArrayPipe,
 
   ],
   imports: [

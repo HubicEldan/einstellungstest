@@ -14,65 +14,65 @@
   </div>
   <div class="row main-calendar-page__week-range-section">
     <div class="col-1"></div>
-    <div class="col text-center" *ngFor="let days of getWeekRange()" [id]="days | date: 'd'">
+    <div
+      class="col text-center"
+      *ngFor="let days of getWeekRange()"
+      [id]="days | date: 'd'"
+    >
       {{ days | date: "d EE" }}
     </div>
   </div>
 
-
-    <div class="main-calendar-page__month-range-section overflow-auto">
+  <div class="main-calendar-page__month-range-section overflow-auto">
+    <div
+      class="row border-top"
+      *ngFor="let hours of hoursAndMinutesRangeArray; index as i"
+    >
       <div
-        class="row border-top"
-        *ngFor="let hours of hoursAndMinutesRangeArray; index as i"
+        class="col-1 border-end main-calendar-page__hours"
+        [id]="hours[0] | date: 'HH:mm'"
       >
+        {{ hours[0] | date: "HH:mm" }}
         <div
-          class="col-1 border-end main-calendar-page__hours"
-          [id]="hours[0] | date: 'HH:mm'"
+          [id]="minutes | date: 'mm'"
+          *ngFor="let minutes of hoursAndMinutesRangeArray[i]"
         >
-          {{ hours[0] | date: "HH:mm" }}
-          <div
-            [id]="minutes | date: 'mm'"
-            *ngFor="let minutes of hoursAndMinutesRangeArray[i];"
-          >
-            <div style="font-size: 0.01rem">{{ minutes | date: "mm" }}</div>
-          </div>
+          <div style="font-size: 0.01rem">{{ minutes | date: "mm" }}</div>
         </div>
-
-
-
-
-        <div
-          class="day-cell col border-end"
-          *ngFor="let days of weekDaysArray; let j = index;"
-          [id]="days | date: 'd'"
-        >
-        <h6 class="w-100 pt-2 pb-5 text-center">VIEWINGS {{i}}</h6>
-        <div class="row align-items-start">
-
-          <div
-          [ngClass]="{
-            'hide-element': !(
-              (node.date | date: 'dd.MM.yyyy') ===
-                (days | date: 'dd.MM.yyyy') &&
-              (subtractHours(node.date, 2) | date: 'HH:mm') ===
-                (hours[0] | date: 'HH:mm')
-            )
-          }"
-          class="col-2 ps-2 pb-2 pt-2"
-          *ngFor="let node of nodes"
-
-        >
-          <div (click)="openDialog(node, nodes)">
-            <img class="avatar" src="{{ node.property?.imageUrl }}" />
-          </div>
-        </div>
-        </div>
-
       </div>
+
+      <div
+        class=" col border-end text-center"
+        *ngFor="let days of weekDaysArray; let j = index"
+        [id]="days | date: 'd'"
+      >
+        <ng-container *ngFor="let node of nodes | nodesToArray: hours[0]:days">
+          <div class="app-day">
+            <div style="color: black; padding-bottom: 4rem; font-weight: bold;" class="text-center pt-2" *ngIf="node.length > 0">
+              {{ node.length }} VIEWINGS
+            </div>
+            <p-avatarGroup *ngIf="node.length > 0"
+              class="row main-calendar-page__property-picture-group"
+            >
+              <ng-container *ngFor="let appointment of node">
+
+                <p-avatar
+                  image="{{ appointment.property?.imageUrl }}"
+                ></p-avatar>
+              </ng-container>
+            </p-avatarGroup>
+          </div>
+
+
+        </ng-container>
       </div>
     </div>
-
+  </div>
 </div>
+
+<!-- <div class="col-2">
+                  <img class="avatar" src="{{ appointment.property?.imageUrl }}" />
+                </div> -->
 
 <!-- <p-avatar  image="{{ node.property?.imageUrl }}"></p-avatar> -->
 
@@ -115,3 +115,25 @@
           </div>
         </div>
       -->
+
+<!--
+      <div class="row">
+
+        <div
+        [ngClass]="{
+          'hide-element': !(
+            (node.date | date: 'dd.MM.yyyy') ===
+              (days | date: 'dd.MM.yyyy') &&
+            (subtractHours(node.date, 2) | date: 'HH:mm') ===
+              (hours[0] | date: 'HH:mm')
+          )
+        }"
+        class="col-2 ps-2 pb-2 pt-2"
+        *ngFor="let node of nodes"
+
+      >
+        <div (click)="openDialog(node, nodes)">
+          <img class="avatar" src="{{ node.property?.imageUrl }}" />
+
+        </div>
+      </div> -->

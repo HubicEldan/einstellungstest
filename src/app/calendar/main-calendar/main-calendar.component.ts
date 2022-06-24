@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { addDays, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, getDate, getHours, getYear, subHours } from 'date-fns';
+import { addDays, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, format, getDate, getHours, getYear, subHours } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
 
@@ -13,14 +13,15 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() nextButtonClickEvent = new EventEmitter<boolean>();
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
-  @Input() nodes: INode[] = [];
+  @Input() nodes!: INode[];
 
   hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
   nextViewing: INode[] = [];
- 
+  flag: boolean = false;
+
 
 
   constructor(private dialog: MatDialog) { }
@@ -36,6 +37,8 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
       this.getWeekRange();
+      // this.getNodes();
+
     }
   }
 
@@ -87,11 +90,26 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
 
 
+  // getNodes(): boolean {
+  //   this.hoursAndMinutesRangeArray?.forEach(hour => {
+  //     this.weekDaysArray.forEach(day => {
+  //       this.nodes.forEach(node => {
+  //         if (format(new Date(day), 'dd.MM.yyyy') === format(new Date(node.date), 'dd.MM.yyyy') && format(new Date(node.date), 'HH:mm') === format(new Date(hour[0]), 'HH:mm')) {
+
+  //           this.flag = true;
+  //         }
+  //       })
+  //     })
+  //   })
+  //   return this.flag;
+  // }
+
+
+
+
+
 
   openDialog(node: INode, nodes: INode[]): void {
-
-
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
