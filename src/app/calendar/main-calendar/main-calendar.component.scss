@@ -29,26 +29,35 @@
     cursor: pointer;
   }
 
-  &__appointments {
-    color: #fff;
-    background-color: #3e3e3e;
-
-    cursor: pointer;
+  &__viewings {
+    color: black;
+    padding-bottom: 4rem;
+    font-weight: bold;
+    :hover > & {
+      color: #fff;
+    }
   }
 
   &__appointment {
     cursor: pointer;
+    background-color: #eeecec;
 
-    padding: 0.2rem;
+    &:hover {
+      background-color: rgb(48, 48, 244);
+      z-index: 1;
+    }
 
   }
+
+
+
+
+
+
+
   &__property-picture-group {
-    // margin-left: 0.6rem;
-    // margin-top: 4.5rem
     padding-left: 1rem;
     padding-bottom: 0.8rem;
-
-
   }
 
 

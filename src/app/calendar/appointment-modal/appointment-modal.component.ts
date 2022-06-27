@@ -11,7 +11,7 @@ import { INode } from 'src/app/shared/models/INode';
 })
 export class AppointmentModalComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode | undefined, nodes: INode[], date: Date }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode, nodes: INode[], date: Date }) { }
   next!: number;
   previous!: number;
   isLeftArrowVisible: boolean = true;
@@ -21,18 +21,16 @@ export class AppointmentModalComponent implements OnInit {
   ngOnInit(): void {
     let nodesForSort = [...this.data.nodes];
     this.data.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
   }
 
+
+  //još doraditi ove metode (kad se vraća uzima prvi odozdo i nevidljivost strelica popraviti)
 
   nextApp() {
     for (let i = 0; i < this.data.nodes.length; i++) {
 
-      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
-
+      if ((format(new Date(this.data.node?.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i]?.date), 'dd.MM.yyyy'))) {
         this.next = i;
-
-
         if (i === this.data.nodes.length - 1) {
           this.isRightArrowVisible = false;
           this.isLeftArrowVisible = true;
@@ -45,7 +43,6 @@ export class AppointmentModalComponent implements OnInit {
         }
       }
     }
-
     this.next++;
     this.data.node = this.data.nodes[this.next];
   }
@@ -53,7 +50,7 @@ export class AppointmentModalComponent implements OnInit {
 
   previousApp() {
     for (let i = 0; i < this.data.nodes.length; i++) {
-      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy')) && ((format(new Date(this.data.node!.date), 'HH:mm') === format(new Date(this.data.nodes[i].date), 'HH:mm')))) {
+      if ((format(new Date(this.data.node!.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i].date), 'dd.MM.yyyy'))) {
         this.previous = i++;
 
         if (this.previous === 0) {
@@ -70,6 +67,8 @@ export class AppointmentModalComponent implements OnInit {
 
     this.previous--;
     this.data.node = this.data.nodes[this.previous];
+
+
   }
 
 

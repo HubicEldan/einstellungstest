@@ -47,9 +47,12 @@
         [id]="days | date: 'd'"
       >
         <ng-container *ngFor="let node of nodes | nodesToArray: hours[0]:days">
-          <div class="app-day">
-            <div style="color: black; padding-bottom: 4rem; font-weight: bold;" class="text-center pt-2" *ngIf="node.length > 0">
+          <div class="main-calendar-page__appointment" (click)="openDialog(node[0])">
+            <div class="main-calendar-page__viewings text-center pt-2" *ngIf="node.length > 0 && node.length !== 1">
               {{ node.length }} VIEWINGS
+            </div>
+            <div class="main-calendar-page__viewings text-center pt-2" *ngIf="node.length === 1">
+              {{ node.length }} VIEWING
             </div>
             <p-avatarGroup *ngIf="node.length > 0"
               class="row main-calendar-page__property-picture-group"
@@ -70,70 +73,3 @@
   </div>
 </div>
 
-<!-- <div class="col-2">
-                  <img class="avatar" src="{{ appointment.property?.imageUrl }}" />
-                </div> -->
-
-<!-- <p-avatar  image="{{ node.property?.imageUrl }}"></p-avatar> -->
-
-<!-- <div
-            class="main-calendar-page__appointment"
-            *ngIf="
-              (node.date | date: 'dd.MM.yyyy') ===
-                (days | date: 'dd.MM.yyyy') &&
-              (subtractHours(node.date, 2) | date: 'HH:mm') ===
-                (hours[0] | date: 'HH:mm')
-            "
-
-          >
-
-
-          </div> -->
-<!-- <p-avatarGroup  label="P">
-            <p-avatar label="P"></p-avatar>
-            <p-avatar icon="pi pi-search"></p-avatar>
-            <p-avatar label="user.png"></p-avatar>
-            <p-avatar label="+2"></p-avatar>
-        </p-avatarGroup> -->
-<!-- <div>{{k+1 + '. ' + node.property.name}}</div> -->
-
-<!-- <div
-          [ngClass]="{
-            'hide-element': !(
-              (node.date | date: 'dd.MM.yyyy') ===
-                (days | date: 'dd.MM.yyyy') &&
-              (subtractHours(node.date, 2) | date: 'HH:mm') ===
-                (hours[0] | date: 'HH:mm')
-            )
-          }"
-          class="col-2 ps-2 pb-2"
-          *ngFor="let node of nodes"
-
-        >
-          <div (click)="openDialog(node, nodes)">
-            <img class="avatar" src="{{ node.property?.imageUrl }}" />
-          </div>
-        </div>
-      -->
-
-<!--
-      <div class="row">
-
-        <div
-        [ngClass]="{
-          'hide-element': !(
-            (node.date | date: 'dd.MM.yyyy') ===
-              (days | date: 'dd.MM.yyyy') &&
-            (subtractHours(node.date, 2) | date: 'HH:mm') ===
-              (hours[0] | date: 'HH:mm')
-          )
-        }"
-        class="col-2 ps-2 pb-2 pt-2"
-        *ngFor="let node of nodes"
-
-      >
-        <div (click)="openDialog(node, nodes)">
-          <img class="avatar" src="{{ node.property?.imageUrl }}" />
-
-        </div>
-      </div> -->

@@ -19,7 +19,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
-  nextViewing: INode[] = [];
+  // nextViewing: INode[] = [];
   flag: boolean = false;
 
 
@@ -89,33 +89,13 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   }
 
 
-
-  // getNodes(): boolean {
-  //   this.hoursAndMinutesRangeArray?.forEach(hour => {
-  //     this.weekDaysArray.forEach(day => {
-  //       this.nodes.forEach(node => {
-  //         if (format(new Date(day), 'dd.MM.yyyy') === format(new Date(node.date), 'dd.MM.yyyy') && format(new Date(node.date), 'HH:mm') === format(new Date(hour[0]), 'HH:mm')) {
-
-  //           this.flag = true;
-  //         }
-  //       })
-  //     })
-  //   })
-  //   return this.flag;
-  // }
-
-
-
-
-
-
-  openDialog(node: INode, nodes: INode[]): void {
+  openDialog(node: INode[]): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
     dialogConfig.height = "700px";
     dialogConfig.width = "800px";
-    dialogConfig.data = { node: node, nodes: nodes, date: this.selectedDate };
+    dialogConfig.data = { node: node, nodes: this.nodes, date: this.selectedDate };
     this.dialog.open(AppointmentModalComponent, dialogConfig);
 
   }

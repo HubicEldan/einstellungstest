@@ -41,7 +41,7 @@
       <div class="col-lg-8 calendar-page__main-calendar-page">
         <app-main-calendar
           [selectedDate]="selectedDate"
-          [nodes]="nodes"
+          [nodes]="uniqueNodes"
           (nextButtonClickEvent)="next($event)"
           (perviousButtonClickEvent)="previous($event)"
         ></app-main-calendar>

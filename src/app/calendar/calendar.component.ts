@@ -17,8 +17,8 @@ export class CalendarComponent implements OnInit {
   constructor(private store: Store<any>) { }
   nodes: INode[] = [];
   options: any[] = [];
-  nextViewing: INode[] = [];
-
+  nextViewing!: INode;
+  uniqueNodes: INode[] = [];
 
   selectedDate: Date = new Date();
   selectedDropdownItem: any;
@@ -28,34 +28,41 @@ export class CalendarComponent implements OnInit {
     this.store.dispatch(new nodeActions.LoadNodes())
     this.store.subscribe(state => state?.data?.data?.appointments && this.initNodes(state.data.data.appointments.nodes))
     this.options = [
-  { name: 'Dropdown item 1', code: 'NY' },
-  { name: 'Dropdown item 1', code: 'RM' },
-  { name: 'Dropdown item 1', code: 'LDN' },
-  { name: 'Dropdown item 1', code: 'IST' },
-  { name: 'Dropdown item 1', code: 'PRS' }
-];
+      { name: 'Dropdown item 1', code: 'NY' },
+      { name: 'Dropdown item 1', code: 'RM' },
+      { name: 'Dropdown item 1', code: 'LDN' },
+      { name: 'Dropdown item 1', code: 'IST' },
+      { name: 'Dropdown item 1', code: 'PRS' }
+    ];
 
-}
+  }
 
 
-initNodes(nodes: INode[]) {
-  this.nodes = nodes;
-  let nodesForSort = [...this.nodes];
+  initNodes(nodes: INode[]) {
+    this.nodes = nodes;
+    let nodesForSort = [...this.nodes];
 
-  //sort appointments
-  this.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    //sort appointments
+    this.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    for (let i = 0; i < this.nodes.length; i++) {
+      if (this.nodes[i]?.date !== this.nodes[i + 1]?.date && this.nodes[i]?.property !== this.nodes[i + 1]?.property) {
+        this.uniqueNodes.push(this.nodes[i]);
 
-  //next appointment depending on current date
-  for (let i = 0; i < this.nodes.length; i++) {
-    if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {
-      this.nextViewing.push(this.nodes[i]);
-    } else if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
-      this.nextViewing.push(this.nodes[i]);
-    } else {
+      }
 
     }
+
+    //next appointment depending on current date
+    for (let i = 0; i < this.nodes.length; i++) {
+      if ((getHours(subHours(new Date(this.nodes[i].date), 2)) > getHours(this.selectedDate))) {
+        this.nextViewing = this.nodes[i];
+      } else if (getDay(subHours(new Date(this.nodes[i].date), 2)) > getDay(this.selectedDate)) {
+        this.nextViewing = this.nodes[i];
+      } else {
+        this.nextViewing = this.nodes[this.nodes.length];
+      }
+    }
   }
-}
 
   onMonthChange() {
     // this.selectedDate = addMonths(this.selectedDate, 1);
