@@ -25,7 +25,7 @@
       <div class="calendar-page__left-section col-lg-4">
         <div class="row">
           <p-calendar
-            (onMonthChange)="onMonthChange()"
+            (onSelect)="dayChange()"
             class="p-0"
             [(ngModel)]="selectedDate"
             [inline]="true"
@@ -34,7 +34,7 @@
         </div>
         <div class="row calendar-page__next-viewing">
           <div class="p-3 border-start border-end border-bottom">
-            <app-next-viewing [nextView]="nextViewing"></app-next-viewing>
+            <app-next-viewing [nextViews]="nextViews"></app-next-viewing>
           </div>
         </div>
       </div>

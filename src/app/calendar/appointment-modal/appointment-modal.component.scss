@@ -4,10 +4,16 @@
 
     &__next {
         cursor: pointer;
+        &:hover {
+          color: rgb(35, 35, 252);
+        }
     }
 
     &__previous {
         cursor: pointer;
+        &:hover {
+          color: rgb(35, 35, 252);
+        }
     }
 
     &__land-info {

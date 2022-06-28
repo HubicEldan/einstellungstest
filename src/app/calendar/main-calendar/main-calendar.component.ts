@@ -14,22 +14,17 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
   @Input() selectedDate!: Date;
   @Input() nodes!: INode[];
-
+  isHover!: boolean;
   hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
-  // nextViewing: INode[] = [];
-  flag: boolean = false;
-
-
-
+  today: Date = new Date();
   constructor(private dialog: MatDialog) { }
-
-
   ngOnInit(): void {
     this.hoursAndMinutesRange();
     this.selectedDate = new Date();
+
 
   }
 
@@ -40,6 +35,12 @@ export class MainCalendarComponent implements OnInit, OnChanges {
       // this.getNodes();
 
     }
+  }
+
+  hover(node: INode): void {
+    this.isHover = true;
+    this.isHover ? this.today = new Date(node.date) : null;
+
   }
 
 
@@ -61,7 +62,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
       start: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), 8),
       end: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), 21),
     })
-
 
     return this.hoursArray;
   }

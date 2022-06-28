@@ -21,14 +21,25 @@ export class AppointmentModalComponent implements OnInit {
   ngOnInit(): void {
     let nodesForSort = [...this.data.nodes];
     this.data.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    if(this.data.node?.id === this.data.nodes[this.data.nodes.length - 1]?.id) {
+      this.isRightArrowVisible = false;
+    } else {
+      this.isRightArrowVisible = true;
+    }
+
+    if(this.data.node?.id === this.data.nodes[0]?.id) {
+      this.isLeftArrowVisible = false;
+    } else {
+      this.isLeftArrowVisible = true;
+    }
   }
 
 
-  //još doraditi ove metode (kad se vraća uzima prvi odozdo i nevidljivost strelica popraviti)
+
 
   nextApp() {
     for (let i = 0; i < this.data.nodes.length; i++) {
-
       if ((format(new Date(this.data.node?.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i]?.date), 'dd.MM.yyyy'))) {
         this.next = i;
         if (i === this.data.nodes.length - 1) {
@@ -36,14 +47,19 @@ export class AppointmentModalComponent implements OnInit {
           this.isLeftArrowVisible = true;
           this.next = this.data.nodes.length - 2;
 
+        } else if (i === this.data.nodes.length - 2) {
+          this.isRightArrowVisible = false;
+          this.isLeftArrowVisible = true;
         } else {
-
           this.isRightArrowVisible = true;
           this.isLeftArrowVisible = true;
         }
       }
     }
+
+
     this.next++;
+
     this.data.node = this.data.nodes[this.next];
   }
 
@@ -55,6 +71,9 @@ export class AppointmentModalComponent implements OnInit {
 
         if (this.previous === 0) {
           this.previous = 1;
+          this.isRightArrowVisible = true;
+          this.isLeftArrowVisible = false;
+        } else if (this.previous === 1) {
           this.isRightArrowVisible = true;
           this.isLeftArrowVisible = false;
         } else {

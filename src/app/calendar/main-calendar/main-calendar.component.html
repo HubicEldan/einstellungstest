@@ -7,9 +7,15 @@
         {{ selectedDate | date: "y" }}
       </strong>
     </div>
-    <div class="col-6 text-end main-calendar-page__chevrons">
-      <i class="pi pi-chevron-left me-2" (click)="previousWeek(true)"></i
-      ><i class="pi pi-chevron-right" (click)="nextWeek(true)"></i>
+    <div class="col-6 text-end">
+      <i
+        class="pi pi-chevron-left me-2 main-calendar-page__chevron-left"
+        (click)="previousWeek(true)"
+      ></i
+      ><i
+        class="pi pi-chevron-right main-calendar-page__chevron-right"
+        (click)="nextWeek(true)"
+      ></i>
     </div>
   </div>
   <div class="row main-calendar-page__week-range-section">
@@ -19,7 +25,12 @@
       *ngFor="let days of getWeekRange()"
       [id]="days | date: 'd'"
     >
-      {{ days | date: "d EE" }}
+      <span
+        [ngClass]="{
+          'week-day-style': (today | date: 'd') === (days | date: 'd')
+        }"
+        >{{ days | date: "d EE" }}</span
+      >
     </div>
   </div>
 
@@ -42,34 +53,44 @@
       </div>
 
       <div
-        class=" col border-end text-center"
+        class="col border-end text-center"
         *ngFor="let days of weekDaysArray; let j = index"
         [id]="days | date: 'd'"
       >
-        <ng-container *ngFor="let node of nodes | nodesToArray: hours[0]:days">
-          <div class="main-calendar-page__appointment" (click)="openDialog(node[0])">
-            <div class="main-calendar-page__viewings text-center pt-2" *ngIf="node.length > 0 && node.length !== 1">
+        <div
+          (click)="openDialog(node[0])"
+          *ngFor="let node of nodes | nodesToArray: hours[0]:days"
+        >
+          <div
+            class="main-calendar-page__appointment"
+
+          >
+            <div
+
+              class="main-calendar-page__viewings text-center pt-2"
+              *ngIf="node.length > 0 && node.length !== 1"
+            >
               {{ node.length }} VIEWINGS
             </div>
-            <div class="main-calendar-page__viewings text-center pt-2" *ngIf="node.length === 1">
+            <div
+              class="main-calendar-page__viewings text-center pt-2"
+              *ngIf="node.length === 1"
+            >
               {{ node.length }} VIEWING
             </div>
-            <p-avatarGroup *ngIf="node.length > 0"
+            <p-avatarGroup
+              *ngIf="node.length > 0"
               class="row main-calendar-page__property-picture-group"
             >
               <ng-container *ngFor="let appointment of node">
-
                 <p-avatar
                   image="{{ appointment.property?.imageUrl }}"
                 ></p-avatar>
               </ng-container>
             </p-avatarGroup>
           </div>
-
-
-        </ng-container>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

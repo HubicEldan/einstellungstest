@@ -10,7 +10,7 @@ import { INode } from 'src/app/shared/models/INode';
 export class NextViewingComponent implements OnInit {
 
   constructor() { }
-  @Input() nextView!: INode;
+  @Input() nextViews: INode[] = [];
   ngOnInit(): void {
 
   }
