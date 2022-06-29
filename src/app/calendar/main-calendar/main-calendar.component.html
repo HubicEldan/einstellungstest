@@ -27,7 +27,7 @@
     >
       <span
         [ngClass]="{
-          'week-day-style': (today | date: 'd') === (days | date: 'd')
+          'week-day-style': (today | date: 'dd.MM.yyyy') === (days | date: 'dd.MM.yyyy')
         }"
         >{{ days | date: "d EE" }}</span
       >

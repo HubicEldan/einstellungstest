@@ -12,10 +12,10 @@ export class NodesToArrayPipe implements PipeTransform {
     }
 
     return Array(nodes.filter((appointment: any) => {
-      const appointmentDate = format(new Date(appointment.date), 'dd');
+      const appointmentDate = format(new Date(appointment.date), 'dd.MM.yyyy');
       const appointmentHour = format(new Date(appointment.date), 'HH');
 
-      if (appointmentDate === format(new Date(day), 'dd') && appointmentHour === format(subHours(new Date(hour), -2), 'HH')) {
+      if (appointmentDate === format(new Date(day), 'dd.MM.yyyy') && appointmentHour === format(subHours(new Date(hour), -2), 'HH')) {
         return appointment;
       }
     }));

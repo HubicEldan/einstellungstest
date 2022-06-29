@@ -1,32 +1,41 @@
-<div class="next-viewing-page">
-  <h6 class="p-0 fs-5">NEXT VIEWING</h6>
-  <p-image  src="{{nextViews[0]?.property?.imageUrl}}" alt="Image" height="250" width="400"></p-image>
-  <span class="d-block pt-3 fs-4 fw-bold">{{
-    nextViews[0]?.property?.name
-  }}</span>
-  <span class="d-block fs-5 pb-3">{{
-    nextViews[0]?.property?.address?.street +
-      " " +
-      nextViews[0]?.property?.address?.houseNumber +
-      ", " +
-      nextViews[0]?.property?.address?.zipCode +
-      " " +
-      nextViews[0]?.property?.address?.city +
-      ", " +
-      nextViews[0]?.property?.address?.country
-  }}</span>
-  <div class="row pb-2">
-    <div class="col-6 fs-5">
-      <i class="pi pi-calendar pe-1"></i
-      >{{ nextViews[0]?.date | date: "dd MMMM yyyy" }}
+<div class="next-viewing-page" style="height: 100%">
+  <div *ngIf="nextViews[0]">
+    <h6 class="p-0 fs-5">NEXT VIEWING</h6>
+    <p-image
+      src="{{ nextViews[0]?.property?.imageUrl }}"
+      alt="Image"
+      height="250"
+      width="400"
+    ></p-image>
+    <span class="d-block pt-3 fs-4 fw-bold">{{
+      nextViews[0]?.property?.name
+    }}</span>
+    <span class="d-block fs-5 pb-3">{{
+      nextViews[0]?.property?.address?.street +
+        " " +
+        nextViews[0]?.property?.address?.houseNumber +
+        ", " +
+        nextViews[0]?.property?.address?.zipCode +
+        " " +
+        nextViews[0]?.property?.address?.city +
+        ", " +
+        nextViews[0]?.property?.address?.country
+    }}</span>
+    <div class="row pb-2">
+      <div class="col-6 fs-5">
+        <i class="pi pi-calendar pe-1"></i
+        >{{ nextViews[0]?.date | date: "dd MMMM yyyy" }}
+      </div>
+      <div class="col-6 fs-5 d-flex align-items-center">
+        <i class="pi pi-clock pe-1"></i>
+        {{ subtractHours(nextViews[0]?.date, 2) | date: "HH:mm" }}
+      </div>
     </div>
-    <div class="col-6 fs-5 d-flex align-items-center">
-      <i class="pi pi-clock pe-1"></i>
-      {{ subtractHours(nextViews[0]?.date,2) | date: "HH:mm" }}
-    </div>
+    <span class="d-block fs-5"
+      ><i class="pi pi-user pe-2"></i
+      >{{
+        nextViews[0]?.attendeeCount + " | " + nextViews[0]?.maxInviteeCount
+      }}</span
+    >
   </div>
-  <span class="d-block fs-5"><i class="pi pi-user pe-2"></i
-    >{{
-      nextViews[0]?.attendeeCount + " | " + nextViews[0]?.maxInviteeCount
-  }}</span>
 </div>
