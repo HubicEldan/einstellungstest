@@ -1,24 +1,18 @@
 .calendar-page {
     display: flex;
     align-items: center;
-    // height: 100%;
-
     &__main-container {
         background-color: #fff;
-
     }
 
     &__dropdowns {
         background-color: #efefef;
     }
 
-
     &__main-calendar-page {
         border-right: 1px solid var(--color-border);
         border-bottom: 1px solid var(--color-border);
     }
-
-
 }
 
 ::ng-deep .p-dropdown {

@@ -10,22 +10,18 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AppointmentModalComponent } from './calendar/appointment-modal/appointment-modal.component';
+import { NextViewingComponent } from './calendar/next-viewing/next-viewing.component';
+import { MainCalendarComponent } from './calendar/main-calendar/main-calendar.component';
 
 //primeng
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
-import { NextViewingComponent } from './calendar/next-viewing/next-viewing.component';
-import { MainCalendarComponent } from './calendar/main-calendar/main-calendar.component';
-import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
 import { ImageModule } from 'primeng/image';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 
-
-
-//material 
+//material
 import { MatDialogModule } from '@angular/material/dialog';
-
 
 //ngrx
 import { StoreModule } from '@ngrx/store'
@@ -33,8 +29,11 @@ import { nodeReducer } from './calendar/state/node.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { NodeEffect } from './calendar/state/node.effects';
-import { NodesToArrayPipe } from './nodes-to-array.pipe';
 
+
+//pipes
+import { NodesToArrayPipe } from './shared/pipes/nodes-to-array.pipe';
+import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
 
 
 
@@ -67,7 +66,6 @@ import { NodesToArrayPipe } from './nodes-to-array.pipe';
     StoreModule.forFeature("data", nodeReducer),
     EffectsModule.forFeature([NodeEffect]),
     StoreDevtoolsModule.instrument(),
-
   ],
   providers: [],
   bootstrap: [AppComponent]

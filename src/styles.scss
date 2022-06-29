@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 body {
     background-color: var(--color-body);
 }
@@ -19,9 +18,9 @@ body {
     --font-quaternary: "Roboto", sans-serif;
     --color-border: #ccc;
     --color-body: #efefef;
-    // --color-secondary: #364e83;
-    // --color-background-red: #b02b2a;
-    // --color-text-white: #ffffff;
+    --color-arrows: rgb(35, 35, 252);
+    --color-background: rgb(48, 48, 244);
+    --color-icons: #0000FF;
     --font-jumbo: 48px;
     --font-xxxl: 38px;
     --font-xxl: 28px;

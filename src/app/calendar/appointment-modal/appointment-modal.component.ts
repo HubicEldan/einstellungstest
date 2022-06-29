@@ -21,7 +21,6 @@ export class AppointmentModalComponent implements OnInit {
   ngOnInit(): void {
     let nodesForSort = [...this.data.nodes];
     this.data.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
     if(this.data.node?.id === this.data.nodes[this.data.nodes.length - 1]?.id) {
       this.isRightArrowVisible = false;
     } else {
@@ -46,7 +45,6 @@ export class AppointmentModalComponent implements OnInit {
           this.isRightArrowVisible = false;
           this.isLeftArrowVisible = true;
           this.next = this.data.nodes.length - 2;
-
         } else if (i === this.data.nodes.length - 2) {
           this.isRightArrowVisible = false;
           this.isLeftArrowVisible = true;

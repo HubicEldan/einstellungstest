@@ -13,7 +13,6 @@
     color: #858585;
   }
 
-
   &__month-range-section {
     height: 45rem;
   }
@@ -25,11 +24,20 @@
     font-weight: 500;
   }
 
+  &__minutes {
+    font-size: 1rem;
+    background-color: #0000FF;
+    color: #fff;
+    text-align: center;
+    margin-right: 1rem;
+    border-radius: 5px;
+  }
+
   &__chevron-left {
     cursor: pointer;
 
     &:hover {
-      color: rgb(35, 35, 252);
+      color: var(--color-arrows);
     }
   }
 
@@ -37,7 +45,7 @@
     cursor: pointer;
 
     &:hover {
-      color: rgb(35, 35, 252);
+      color: var(--color-arrows);
     }
   }
 
@@ -55,70 +63,20 @@
     cursor: pointer;
     background-color: #eeecec;
 
-
     &:hover {
-      background-color: rgb(48, 48, 244);
-    
+      background-color: var(--color-background);
     }
-
-
-
-
   }
-
-
 
   &__property-picture-group {
     padding-left: 1rem;
     padding-bottom: 0.8rem;
   }
-
-
-}
-
-.app-day {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background-color: #e7e4e4;
 }
 
 .week-day-style {
-  background-color: rgb(48, 48, 238);
+  background-color: var(--color-background);
   border-radius: 5px;
   color: #fff;
   padding: 0.5rem 1rem;
-}
-
-// .app-day:hover {
-//  background-color: blue;
-//  opacity: 0.8;
-//  cursor: pointer;
-// }
-
-.hide-element {
-  display: none;
-
-}
-
-.day-cell {
-  background-color: #e2dddd;
-  cursor: pointer;
-
-}
-
-
-.week-days {
-  background-color: red;
-}
-
-
-.avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1rem;
-
 }

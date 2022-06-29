@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { subHours } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 
@@ -7,13 +7,8 @@ import { INode } from 'src/app/shared/models/INode';
   templateUrl: './next-viewing.component.html',
   styleUrls: ['./next-viewing.component.scss']
 })
-export class NextViewingComponent implements OnInit {
-
-  constructor() { }
+export class NextViewingComponent{
   @Input() nextViews: INode[] = [];
-  ngOnInit(): void {
-
-  }
 
   subtractHours(date: string | undefined, numOfHours: number) {
     return subHours(new Date(date!), numOfHours);

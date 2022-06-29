@@ -34,9 +34,10 @@
     </div>
   </div>
 
-  <div class="main-calendar-page__month-range-section overflow-auto">
+  <div class="main-calendar-page__month-range-section overflow-auto" >
     <div
       class="row border-top"
+
       *ngFor="let hours of hoursAndMinutesRangeArray; index as i"
     >
       <div
@@ -48,7 +49,15 @@
           [id]="minutes | date: 'mm'"
           *ngFor="let minutes of hoursAndMinutesRangeArray[i]"
         >
-          <div style="font-size: 0.01rem">{{ minutes | date: "mm" }}</div>
+          <div>
+            <div
+              class="main-calendar-page__minutes"
+              *ngIf="((minutes | date: 'HH:mm') === (todayMinutesHours | date: 'HH:mm'))"
+
+            >
+              {{ hours[0] | date: "HH" }}:{{ minutes | date: "mm" }}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -61,12 +70,8 @@
           (click)="openDialog(node[0])"
           *ngFor="let node of nodes | nodesToArray: hours[0]:days"
         >
-          <div
-            class="main-calendar-page__appointment"
-
-          >
+          <div class="main-calendar-page__appointment">
             <div
-
               class="main-calendar-page__viewings text-center pt-2"
               *ngIf="node.length > 0 && node.length !== 1"
             >
@@ -84,6 +89,7 @@
             >
               <ng-container *ngFor="let appointment of node">
                 <p-avatar
+                  (mouseover)="hover(node[0])"
                   image="{{ appointment.property?.imageUrl }}"
                 ></p-avatar>
               </ng-container>
