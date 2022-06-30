@@ -48,7 +48,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
     this.onDayChange();
   }
 
-
   //depending on day change next view changes
   onDayChange(): void {
     this.nextViews = [];
@@ -57,6 +56,12 @@ export class CalendarComponent implements OnInit, OnDestroy {
         this.nextViews.push(this.uniqueNodes[i]);
       }
     }
+  }
+
+
+  //month change
+  onMonthChange() {
+    this.nextViews.push(this.uniqueNodes[this.uniqueNodes.length-1]);
   }
 
   //next week change

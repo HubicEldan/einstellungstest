@@ -35,6 +35,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     }
   }
 
+  //on appointment hover change week day styles
   hover(node: INode): void {
     this.isHover = true;
     this.isHover ? this.today = new Date(node.date) : null;

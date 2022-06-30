@@ -1,26 +1,31 @@
 .modal-page {
-    height: 100%;
-    background-color: var(--color-body);
+  height: 100%;
+  background-color: var(--color-body);
 
-    &__next {
-        cursor: pointer;
-        &:hover {
-          color: rgb(35, 35, 252);
-        }
+  &__next {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-arrows);
     }
+  }
 
-    &__previous {
-        cursor: pointer;
-        &:hover {
-          color: rgb(35, 35, 252);
-        }
+  &__previous {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-arrows);
     }
+  }
 
-    &__land-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+  &__land-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
+  &__icon {
+    color: var(--color-icons);
+  }
 
 }
