@@ -1,12 +1,12 @@
 <div class="modal-page">
   <div class="row border-bottom m-0 p-3 fs-5">
     <div class="col-4">
-      <i class="pi pi-calendar pe-1" style="color: blue"></i
+      <i class="pi pi-calendar pe-1 modal-page__icon"></i
       >{{ data.node?.date | date: "EEEE" + ", " }}
       {{ data.node?.date | date: "dd MMMM yyyy" }}
     </div>
     <div class="col-4 ps-4">
-      <i class="pi pi-clock pe-1" style="color: blue"></i>
+      <i class="pi pi-clock pe-1 modal-page__icon" ></i>
       {{ subtractHours(data.node?.date, 2) | date: "HH:mm" }} -
       {{ subtractHours(addHours(data.node?.date, 1), 2) | date: "HH:mm" }}
     </div>
@@ -29,7 +29,7 @@
     <div
       class="row p-3 m-3 modal-page__main-content"
       style="background-color: #fff;"
-      [ngStyle]="{border: index === i ? '1px solid var(--color-background)' : ''}"
+      [ngStyle]="{border: index === i ? '2px solid var(--color-background)' : ''}"
       *ngIf="
         (appointment?.date | date: 'dd.MM.yyyy') ===
           (data.node?.date | date: 'dd.MM.yyyy')
