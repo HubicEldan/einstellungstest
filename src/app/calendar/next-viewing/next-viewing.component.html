@@ -28,7 +28,7 @@
       </div>
       <div class="col-6 fs-5 d-flex align-items-center">
         <i class="pi pi-clock pe-1"></i>
-        {{ subtractHours(nextViews[0]?.date, 2) | date: "HH:mm" }}
+        {{ subtractHours(nextViews[0]?.date!, 2) | date: "HH:mm" }}
       </div>
     </div>
     <span class="d-block fs-5"

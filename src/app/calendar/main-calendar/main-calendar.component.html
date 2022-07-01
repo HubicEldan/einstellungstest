@@ -38,21 +38,21 @@
   <div class="main-calendar-page__month-range-section overflow-auto">
     <div
       class="row border-top"
-      *ngFor="let hours of hoursAndMinutesRangeArray; index as i"
+      *ngFor="let hours of hoursArray; index as i"
     >
       <div
         class="col-1 border-end main-calendar-page__hours"
-        [id]="hours[0] | date: 'HH:mm'"
+        [id]="hours | date: 'HH:mm'"
       >
-        {{ hours[0] | date: "HH:mm" }}
-        <div
+        {{ hours | date: "HH:mm" }}
+        <!-- <div
           [id]="minutes | date: 'mm'"
           *ngFor="let minutes of hoursAndMinutesRangeArray[i]"
         >
           <div>
             <div class="main-calendar-page__minutes"></div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div
@@ -62,7 +62,7 @@
       >
         <div
           (click)="openDialog(node[0])"
-          *ngFor="let node of nodes | nodesToArray: hours[0]:days"
+          *ngFor="let node of nodes | nodesToArray: hours:days"
         >
           <div
             [ngStyle]="{

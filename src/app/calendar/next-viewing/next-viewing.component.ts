@@ -10,7 +10,7 @@ import { INode } from 'src/app/shared/models/INode';
 export class NextViewingComponent{
   @Input() nextViews: INode[] = [];
 
-  subtractHours(date: string | undefined, numOfHours: number) {
-    return subHours(new Date(date!), numOfHours);
+  subtractHours(date: string, numOfHours: number) {
+    return subHours(new Date(date), numOfHours);
   }
 }

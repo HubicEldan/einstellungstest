@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { addDays, compareAsc, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, getDate, getHours, getYear, subHours } from 'date-fns';
+import { addDays, compareAsc, eachDayOfInterval, eachHourOfInterval, getDate, getYear, subHours } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
 
@@ -18,7 +18,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
 
   isHover!: boolean;
-  hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
@@ -26,7 +25,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
-    this.hoursAndMinutesRange();
+    this.getHoursRange();
     this.selectedDate = new Date();
   }
 
@@ -42,8 +41,8 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     this.isHover ? this.today = new Date(node.date) : null;
   }
 
-  subtractHours(date: string | undefined, numOfHours: number) {
-    return subHours(new Date(date!), numOfHours);
+  subtractHours(date: string, numOfHours: number) {
+    return subHours(new Date(date), numOfHours);
   }
 
   //creating week days range array
@@ -64,16 +63,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     return this.hoursArray;
   }
 
-  //creating hours and minutes range array
-  hoursAndMinutesRange() {
-    for (let i = 0; i <= this.getHoursRange().length - 2; i++) {
-      this.minutesArray = eachMinuteOfInterval({
-        start: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), getHours(this.getHoursRange()[i])),
-        end: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), getHours(this.getHoursRange()[i + 1])),
-      });
-      this.hoursAndMinutesRangeArray.push(this.minutesArray);
-    }
-  }
 
   //switch to next week button clicked, emit true
   nextWeek(value: boolean) {
@@ -87,8 +76,8 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
   //checking if the meeting has passed compared to today
   expiredAppointments(node: INode): boolean {
-    let flag: boolean = false;
-    let today = new Date();
+    let flag = false;
+    const today = new Date();
     if (compareAsc(today, new Date(node?.date)) === -1) {
       flag = true;
     } else {

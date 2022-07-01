@@ -5,6 +5,10 @@ import { INode } from '../shared/models/INode';
 import { Subscription } from 'rxjs';
 import * as nodeActions from './state/node.actions';
 
+export interface dropdownItem {
+  name: string,
+  code: string
+}
 
 @Component({
   selector: 'app-calendar',
@@ -13,19 +17,20 @@ import * as nodeActions from './state/node.actions';
 })
 export class CalendarComponent implements OnInit, OnDestroy {
   constructor(private store: Store<any>) { }
-  
+
   nodes: INode[] = [];
   nextViews: INode[] = [];
   uniqueNodes: INode[] = [];
-  options: any[] = [];
+  options: dropdownItem[] = [];
   selectedDate: Date = new Date();
   today: Date = new Date();
-  selectedDropdownItem: any;
+  selectedDropdownItem!: dropdownItem;
   storeSubscription!: Subscription;
 
   ngOnInit(): void {
     //get data from store
     this.store.dispatch(new nodeActions.LoadNodes());
+
     this.storeSubscription = this.store.subscribe(state => state?.data?.data?.appointments && this.initNodes(state.data.data.appointments.nodes));
     this.options = [
       { name: 'Dropdown item 1', code: 'NY' },
@@ -38,7 +43,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   initNodes(nodes: INode[]): void {
     this.nodes = nodes;
-    let nodesForSort = [...this.nodes];
+    const nodesForSort = [...this.nodes];
     //sort appointments
     this.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     for (let i = 0; i < this.nodes.length; i++) {

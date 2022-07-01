@@ -7,8 +7,8 @@
     </div>
     <div class="col-4 ps-4">
       <i class="pi pi-clock pe-1 modal-page__icon"></i>
-      {{ subtractHours(data.node?.date, 2) | date: "HH:mm" }} -
-      {{ subtractHours(addHours(data.node?.date, 1), 2) | date: "HH:mm" }}
+      {{ subtractHours(data.node?.date!, 2) | date: "HH:mm" }} -
+      {{ subtractHours(addHours(data.node?.date!, 1), 2) | date: "HH:mm" }}
     </div>
 
     <div class="col-4 text-end">
@@ -100,7 +100,7 @@
 
             <div class="col">
               <i class="pi pi-clock pe-1 modal-page__icon"></i>
-              {{ subtractHours(data.nodes[i]?.date, 2) | date: "HH:mm" }}
+              {{ subtractHours(data.nodes[i]?.date!, 2) | date: "HH:mm" }}
             </div>
             <div class="col">
               <i class="pi pi-user pe-1 modal-page__icon"></i>

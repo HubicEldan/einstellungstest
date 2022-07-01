@@ -13,8 +13,8 @@ export class AppointmentModalComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode, nodes: INode[], date: Date }) { }
 
   index!: number;
-  isLeftArrowVisible: boolean = true;
-  isRightArrowVisible: boolean = true;
+  isLeftArrowVisible = true;
+  isRightArrowVisible = true;
 
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class AppointmentModalComponent implements OnInit {
     if ((this.data.nodes.length - this.index) === 2) {
       this.index = this.data.nodes.length - 1;
     }
-    let nodesForSort = [...this.data.nodes];
+    const nodesForSort = [...this.data.nodes];
     this.data.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     if (this.data.node?.id === this.data.nodes[this.data.nodes.length - 1]?.id) {
@@ -73,11 +73,11 @@ export class AppointmentModalComponent implements OnInit {
     this.index = this.index - 1;
   }
 
-  subtractHours(date: string | undefined, numOfHours: number) {
-    return subHours(new Date(date!), numOfHours);
+  subtractHours(date: string, numOfHours: number): Date {
+    return subHours(new Date(date), numOfHours);
   }
 
-  addHours(date: string | undefined, hours: number) {
-    return addHours(new Date(date!), hours).toString();
+  addHours(date: string, hours: number): string {
+    return addHours(new Date(date), hours).toString();
   }
 }

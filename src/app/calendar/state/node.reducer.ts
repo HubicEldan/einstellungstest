@@ -1,8 +1,5 @@
+import { IData } from "src/app/shared/models/INode";
 
-
-import { IData, INode } from "src/app/shared/models/INode";
-
-import * as fromRoot from "../../state/app-state"
 import * as nodeActions from './node.actions'
 
 export interface NodeState {
@@ -11,12 +8,6 @@ export interface NodeState {
     loaded: boolean,
     error: string
 }
-
-
-export interface AppState extends fromRoot.AppState {
-    nodes: NodeState
-}
-
 
 export const initialState: NodeState = {
 
@@ -52,13 +43,13 @@ export function nodeReducer(state = initialState, action: nodeActions.NodeAction
         case nodeActions.INodeActionTypes.LOAD_NODES_FAIL: {
             return {
                 ...state,
-                
+
                     data: {
                         appointments: {
                             nodes: []
                         }
                     },
-                
+
                 loading: false,
                 loaded: false,
                 error: action.payload
