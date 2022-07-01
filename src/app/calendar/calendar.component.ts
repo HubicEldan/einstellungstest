@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addDays, compareAsc, subDays } from 'date-fns';
 import { INode } from '../shared/models/INode';
 import { Subscription } from 'rxjs';
 import * as nodeActions from './state/node.actions';
+
 
 export interface dropdownItem {
   name: string,
@@ -16,6 +20,7 @@ export interface dropdownItem {
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit, OnDestroy {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(private store: Store<any>) { }
 
   nodes: INode[] = [];
