@@ -33,7 +33,7 @@ import { NodeEffect } from './calendar/state/node.effects';
 
 //pipes
 import { NodesToArrayPipe } from './shared/pipes/nodes-to-array.pipe';
-import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe';
+
 
 
 
@@ -43,10 +43,8 @@ import { ChangeToMonthNamePipe } from './shared/pipes/change-to-month-name.pipe'
     CalendarComponent,
     NextViewingComponent,
     MainCalendarComponent,
-    ChangeToMonthNamePipe,
     AppointmentModalComponent,
     NodesToArrayPipe,
-
   ],
   imports: [
     BrowserAnimationsModule,

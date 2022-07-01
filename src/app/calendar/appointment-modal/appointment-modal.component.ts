@@ -11,6 +11,7 @@ import { INode } from 'src/app/shared/models/INode';
 })
 export class AppointmentModalComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { node: INode, nodes: INode[], date: Date }) { }
+
   index!: number;
   isLeftArrowVisible: boolean = true;
   isRightArrowVisible: boolean = true;
@@ -18,7 +19,7 @@ export class AppointmentModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.index = this.data.nodes.indexOf(this.data.node);
-    if((this.data.nodes.length - this.index) === 2) {
+    if ((this.data.nodes.length - this.index) === 2) {
       this.index = this.data.nodes.length - 1;
     }
     let nodesForSort = [...this.data.nodes];
@@ -41,7 +42,7 @@ export class AppointmentModalComponent implements OnInit {
   nextApp() {
     for (let i = 0; i < this.data.nodes.length; i++) {
       if ((format(new Date(this.data.node?.date), 'dd.MM.yyyy') === format(new Date(this.data.nodes[i]?.date), 'dd.MM.yyyy'))) {
-        if (this.index === this.data.nodes.length-2) {
+        if (this.index === this.data.nodes.length - 2) {
           this.isRightArrowVisible = false;
           this.isLeftArrowVisible = true;
         } else {

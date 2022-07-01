@@ -12,8 +12,8 @@ import * as nodeActions from './state/node.actions';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit, OnDestroy {
-
   constructor(private store: Store<any>) { }
+  
   nodes: INode[] = [];
   nextViews: INode[] = [];
   uniqueNodes: INode[] = [];
@@ -22,6 +22,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   today: Date = new Date();
   selectedDropdownItem: any;
   storeSubscription!: Subscription;
+
   ngOnInit(): void {
     //get data from store
     this.store.dispatch(new nodeActions.LoadNodes());
@@ -48,7 +49,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     this.onDayChange();
   }
 
-  //depending on day change next view changes
+  //depending on todays date and manual day change, next view changes
   onDayChange(): void {
     this.nextViews = [];
     for (let i = 0; i < this.uniqueNodes.length; i++) {

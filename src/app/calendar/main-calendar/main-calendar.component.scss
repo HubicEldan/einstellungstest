@@ -55,16 +55,16 @@
     font-weight: bold;
 
     :hover>& {
-      color: #fff;
+      color: #fff !important;
     }
   }
 
   &__appointment {
     cursor: pointer;
-    background-color: #eeecec;
-
+    
     &:hover {
-      background-color: var(--color-background);
+      background-color: var(--color-background) !important;
+      z-index: 1;
     }
   }
 

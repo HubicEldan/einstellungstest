@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { addDays, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, getDate, getHours, getYear, subHours } from 'date-fns';
+import { addDays, compareAsc, eachDayOfInterval, eachHourOfInterval, eachMinuteOfInterval, getDate, getHours, getYear, subHours } from 'date-fns';
 import { INode } from 'src/app/shared/models/INode';
 import { AppointmentModalComponent } from '../appointment-modal/appointment-modal.component';
 
@@ -10,18 +10,19 @@ import { AppointmentModalComponent } from '../appointment-modal/appointment-moda
   styleUrls: ['./main-calendar.component.scss']
 })
 export class MainCalendarComponent implements OnInit, OnChanges {
-  @Output() nextButtonClickEvent = new EventEmitter<boolean>();
-  @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
+  constructor(private dialog: MatDialog) { }
+
   @Input() selectedDate!: Date;
   @Input() nodes!: INode[];
+  @Output() nextButtonClickEvent = new EventEmitter<boolean>();
+  @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
+
   isHover!: boolean;
   hoursAndMinutesRangeArray: any[] = [];
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
   today: Date = new Date();
-  todayMinutesHours = new Date();
-  constructor(private dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -45,6 +46,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     return subHours(new Date(date!), numOfHours);
   }
 
+  //creating week days range array
   getWeekRange(): Date[] {
     this.weekDaysArray = eachDayOfInterval({
       start: this.selectedDate,
@@ -53,6 +55,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     return this.weekDaysArray;
   }
 
+  //creating hours range array
   getHoursRange(): Date[] {
     this.hoursArray = eachHourOfInterval({
       start: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), 8),
@@ -61,22 +64,38 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     return this.hoursArray;
   }
 
+  //creating hours and minutes range array
   hoursAndMinutesRange() {
     for (let i = 0; i <= this.getHoursRange().length - 2; i++) {
       this.minutesArray = eachMinuteOfInterval({
         start: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), getHours(this.getHoursRange()[i])),
-        end: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), getHours(this.getHoursRange()[i+1])),
+        end: new Date(getYear(this.selectedDate), this.selectedDate.getMonth() + 1, getDate(this.selectedDate), getHours(this.getHoursRange()[i + 1])),
       });
       this.hoursAndMinutesRangeArray.push(this.minutesArray);
     }
   }
 
+  //switch to next week button clicked, emit true
   nextWeek(value: boolean) {
     this.nextButtonClickEvent.emit(value);
   }
 
+  //switch to previous week button clicked, emit true
   previousWeek(value: boolean) {
     this.perviousButtonClickEvent.emit(value);
+  }
+
+  //checking if the meeting has passed compared to today
+  expiredAppointments(node: INode): boolean {
+    let flag: boolean = false;
+    let today = new Date();
+    if (compareAsc(today, new Date(node?.date)) === -1) {
+      flag = true;
+    } else {
+      flag = false;
+    }
+
+    return flag;
   }
 
   openDialog(node: INode[]): void {
@@ -87,7 +106,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
     dialogConfig.width = "800px";
     dialogConfig.data = { node: node, nodes: this.nodes, date: this.selectedDate };
     this.dialog.open(AppointmentModalComponent, dialogConfig);
-
   }
 
 
