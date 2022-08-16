@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Pipe, PipeTransform } from '@angular/core';
 import { format, subHours } from 'date-fns';
 import { INode } from '../models/INode';
@@ -10,7 +8,7 @@ import { INode } from '../models/INode';
 })
 export class NodesToArrayPipe implements PipeTransform {
 
-  transform(nodes: any, hour: Date, day: Date): any {
+  transform(nodes: INode[], hour: Date, day: Date): any {
     if (!nodes) {
       return [];
     }
