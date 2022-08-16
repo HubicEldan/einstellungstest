@@ -2,13 +2,13 @@
   <div class="row border-bottom m-0 p-3 fs-5">
     <div class="col-4">
       <i class="pi pi-calendar pe-1 modal-page__icon"></i
-      >{{ data.node?.date | date: "EEEE" + ", " }}
-      {{ data.node?.date | date: "dd MMMM yyyy" }}
+      >{{ data.node.date | date: "EEEE" + ", " }}
+      {{ data.node.date | date: "dd MMMM yyyy" }}
     </div>
     <div class="col-4 ps-4">
       <i class="pi pi-clock pe-1 modal-page__icon"></i>
-      {{ subtractHours(data.node?.date!, 2) | date: "HH:mm" }} -
-      {{ subtractHours(addHours(data.node?.date!, 1), 2) | date: "HH:mm" }}
+      {{ subtractHours(data.node.date!, 2) | date: "HH:mm" }} -
+      {{ subtractHours(addHours(data.node.date!, 1), 2) | date: "HH:mm" }}
     </div>
 
     <div class="col-4 text-end">
@@ -95,19 +95,19 @@
           <div class="row">
             <div class="col">
               <i class="pi pi-calendar pe-1 modal-page__icon"></i>
-              {{ data.nodes[i]?.date | date: "dd MMMM yyyy" }}
+              {{ data.nodes[i].date | date: "dd MMMM yyyy" }}
             </div>
 
             <div class="col">
               <i class="pi pi-clock pe-1 modal-page__icon"></i>
-              {{ subtractHours(data.nodes[i]?.date!, 2) | date: "HH:mm" }}
+              {{ subtractHours(data.nodes[i].date!, 2) | date: "HH:mm" }}
             </div>
             <div class="col">
               <i class="pi pi-user pe-1 modal-page__icon"></i>
               {{
-                data.nodes[i]?.attendeeCount +
+                data.nodes[i].attendeeCount +
                   "|" +
-                  data.nodes[i]?.maxInviteeCount
+                  data.nodes[i].maxInviteeCount
               }}
             </div>
             <div class="col text-end">
