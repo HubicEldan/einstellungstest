@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Pipe, PipeTransform } from '@angular/core';
 import { format, subHours } from 'date-fns';
 import { INode } from '../models/INode';

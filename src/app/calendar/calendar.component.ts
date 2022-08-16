@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addDays, compareAsc, subDays } from 'date-fns';
@@ -20,7 +17,7 @@ export interface dropdownItem {
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit, OnDestroy {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   constructor(private store: Store<any>) { }
 
   nodes: INode[] = [];
@@ -62,11 +59,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
   //depending on todays date and manual day change, next view changes
   onDayChange(): void {
     this.nextViews = [];
-    for (let i = 0; i < this.uniqueNodes.length; i++) {
-      if (compareAsc(this.selectedDate, new Date(this.uniqueNodes[i].date)) === -1) {
-        this.nextViews.push(this.uniqueNodes[i]);
+    this.uniqueNodes.forEach(uniqueNode => {
+      if (compareAsc(this.selectedDate, new Date(uniqueNode.date)) === -1) {
+        this.nextViews.push(uniqueNode);
       }
-    }
+    });
   }
 
 

@@ -17,7 +17,6 @@ export class MainCalendarComponent implements OnInit, OnChanges {
   @Output() nextButtonClickEvent = new EventEmitter<boolean>();
   @Output() perviousButtonClickEvent = new EventEmitter<boolean>();
 
-  isHover!: boolean;
   weekDaysArray!: Date[];
   hoursArray!: Date[];
   minutesArray!: Date[];
@@ -37,8 +36,7 @@ export class MainCalendarComponent implements OnInit, OnChanges {
 
   //on appointment hover change week day styles
   hover(node: INode): void {
-    this.isHover = true;
-    this.isHover ? this.today = new Date(node.date) : null;
+    this.today = new Date(node.date);
   }
 
   subtractHours(date: string, numOfHours: number) {

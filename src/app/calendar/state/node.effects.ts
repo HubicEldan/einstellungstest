@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators'
@@ -21,10 +20,7 @@ export class NodeEffect {
   ),
     mergeMap(() =>
       this.dataService.getJsonData().pipe(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         map((data: any) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           return new nodeActions.LoadNodesSuccess(data.data);
         }),
         catchError((err: string) => of(new nodeActions.LoadNodesFail(err)))

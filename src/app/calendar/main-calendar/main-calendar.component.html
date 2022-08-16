@@ -36,10 +36,7 @@
   </div>
 
   <div class="main-calendar-page__month-range-section overflow-auto">
-    <div
-      class="row border-top"
-      *ngFor="let hours of hoursArray; index as i"
-    >
+    <div class="row border-top" *ngFor="let hours of hoursArray; index as i">
       <div
         class="col-1 border-end main-calendar-page__hours"
         [id]="hours | date: 'HH:mm'"
