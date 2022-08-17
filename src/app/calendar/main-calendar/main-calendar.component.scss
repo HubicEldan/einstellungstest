@@ -14,7 +14,7 @@
   }
 
   &__month-range-section {
-    height: 45rem;
+    height: 50rem;
   }
 
   &__hours {
@@ -61,7 +61,7 @@
 
   &__appointment {
     cursor: pointer;
-    
+
     &:hover {
       background-color: var(--color-background) !important;
       z-index: 1;

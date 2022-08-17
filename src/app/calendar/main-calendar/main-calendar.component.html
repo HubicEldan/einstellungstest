@@ -63,21 +63,12 @@
           >
             <div
               class="main-calendar-page__viewings text-center pt-2"
-              *ngIf="node.length > 0 && node.length !== 1"
+              *ngIf="node.length"
               [ngStyle]="{
                 color: expiredAppointments(node[0]) ? '#fff' : '#3A4454'
               }"
             >
-              {{ node.length }} VIEWINGS
-            </div>
-            <div
-              class="main-calendar-page__viewings text-center pt-2"
-              *ngIf="node.length === 1"
-              [ngStyle]="{
-                color: expiredAppointments(node[0]) ? '#fff' : '#3A4454'
-              }"
-            >
-              {{ node.length }} VIEWING
+              {{ node.length > 1 ? 'VIEWINGS' : 'VIEWING' }}
             </div>
             <p-avatarGroup
               *ngIf="node.length > 0"

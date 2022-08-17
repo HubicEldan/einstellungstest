@@ -25,7 +25,7 @@ export class AppointmentModalComponent implements OnInit {
     const nodesForSort = [...this.data.nodes];
     this.data.nodes = nodesForSort.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-    if (this.data.node?.id === this.data.nodes[this.data.nodes.length - 1]?.id) {
+    if (format(new Date(this.data.node?.date), "dd.MM.yyyy") === format(new Date(this.data.nodes[this.data.nodes.length - 1]?.date), "dd.MM.yyyy")) {
       this.isRightArrowVisible = false;
     } else {
       this.isRightArrowVisible = true;
