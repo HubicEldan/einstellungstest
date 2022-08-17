@@ -40,7 +40,6 @@ export function nodeReducer(state = initialState, action: nodeActions.NodeAction
         ...state,
 
         nodes: [],
-
         loading: false,
         loaded: false,
         error: action.payload
