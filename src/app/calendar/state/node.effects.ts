@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators'
 import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
@@ -14,8 +14,7 @@ export class NodeEffect {
 
   }
 
-  @Effect()
-  loadNodes$: Observable<Action> = this.actions$.pipe(ofType<nodeActions.LoadNodes>(
+  loadNodes$: Observable<Action> = createEffect(() => this.actions$.pipe(ofType<nodeActions.LoadNodes>(
     nodeActions.INodeActionTypes.LOAD_NODES
   ),
     mergeMap(() =>
@@ -24,5 +23,5 @@ export class NodeEffect {
           return new nodeActions.LoadNodesSuccess(data.data.appointments.nodes);
         }),
         catchError((err: string) => of(new nodeActions.LoadNodesFail(err)))
-      )))
+      ))))
 }
