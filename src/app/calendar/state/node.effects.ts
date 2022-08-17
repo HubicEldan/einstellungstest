@@ -21,7 +21,7 @@ export class NodeEffect {
     mergeMap(() =>
       this.dataService.getJsonData().pipe(
         map((data: any) => {
-          return new nodeActions.LoadNodesSuccess(data.data);
+          return new nodeActions.LoadNodesSuccess(data.data.appointments.nodes);
         }),
         catchError((err: string) => of(new nodeActions.LoadNodesFail(err)))
       )))

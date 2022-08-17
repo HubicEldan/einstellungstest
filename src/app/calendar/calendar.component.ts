@@ -31,9 +31,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //get data from store
+    // state?.nodes && this.initNodes(state.data.nodes)
     this.store.dispatch(new nodeActions.LoadNodes());
 
-    this.storeSubscription = this.store.subscribe(state => state?.data?.data?.appointments && this.initNodes(state.data.data.appointments.nodes));
+    this.storeSubscription = this.store.subscribe(state => state?.data.nodes && this.initNodes(state.data.nodes));
+
     this.options = [
       { name: 'Dropdown item 1', code: 'NY' },
       { name: 'Dropdown item 1', code: 'RM' },
