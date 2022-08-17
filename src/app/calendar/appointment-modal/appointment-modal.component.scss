@@ -2,6 +2,14 @@
   height: 100%;
   background-color: var(--color-body);
 
+  &__main-content {
+    background-color: #fff;
+  }
+
+  &__address {
+    color: #ccc;
+  }
+
   &__next {
     cursor: pointer;
 
@@ -12,7 +20,7 @@
 
   &__previous {
     cursor: pointer;
-    
+
     &:hover {
       color: var(--color-arrows);
     }
